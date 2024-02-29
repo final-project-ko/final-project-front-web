@@ -25,8 +25,8 @@ function App() {
               <Route path='/customer' element={<CustomerPage/>}/>
               <Route path='/mypage' element={<Mypage/>}/>
               <Route path='/login' element={<Login/>}/>
+              <Route path='/admin' element={<AdminMain/>}/>
           </Route>
-        <Route path='/admin' element={<AdminMain/>}/>
         <Route path='/login/oauth' element={<LoginHandler/>}/>
         </Routes>
       </BrowserRouter>

@@ -125,3 +125,48 @@
 .conditionsPage::-webkit-scrollbar {
     display: none;
 }
+
+.userInfoDiv{
+  border-right: 3px solid #737373;
+  position: absolute;
+  width: 20%;
+  height: 90%;
+  background-color: white;
+  text-align: center;
+  font-size: 2rem;
+  display: flex;
+  top: 5%;
+  flex-direction: column;
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+  margin-right: 20px; /* 오른쪽 여백을 추가합니다. */
+}
+  
+
+.userInfoAll {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+  border-radius:20px;
+  left: 35%;
+  top: 20%;
+}
+
+
+
+.userInfoAll button {
+  text-decoration: none;
+  color: black;
+  margin-bottom: 20px; /* 버튼 간격을 조정합니다. */
+  border: none;
+  cursor: pointer;
+  height: 10%;
+  background-color: white;
+}
+.userInfoAll button:hover{
+  background-color: #737373;
+}
