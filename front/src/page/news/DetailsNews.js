@@ -33,8 +33,8 @@ const DetailsNews = ({ toggle }) => {
     return (
         <div className='detailsNewsDiv'>
             <div className='selectedNewsDiv'>
-                <img className='detailsNewsImg' src={article.image}/>
                 <span className='detailsNewsTitle'>{article.title}</span>
+                <img className='detailsNewsImg' src={article.image}/>
                 <span className='detailsNewsDescription'>{article.description}</span>
                 <span className='detailsNewsLinkText'>
                     {linkText}&nbsp;&nbsp;
