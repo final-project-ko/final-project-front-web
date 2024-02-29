@@ -16,7 +16,10 @@ const LoginHandler = (props) => {
                 method: "POST",
             }).then(res => res.json())
               .then(data => {
-                  console.log(data)
+                  localStorage.setItem("userCode",data.userCode);
+                  localStorage.setItem("userName",data.userName);
+                  localStorage.setItem("userEmail",data.userEmail);
+                  localStorage.setItem("userAuth",data.userAuth);
 
               })
                 .catch(error =>{
