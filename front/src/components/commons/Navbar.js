@@ -112,7 +112,7 @@ const Navbar = ( {toggle, setToggle} ) => {
                     <li><NavLink to={"/customer"} style={{textDecoration:"none",color:"black"}}>고객센터</NavLink></li>
                     <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>마이페이지</NavLink></li>
                     <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>자유게시판</NavLink></li>
-                    <li><NavLink to={"/admin"} 
+                    <li><NavLink to={localStorage.getItem("userAuth")==="admin"?"/admin":"/"} 
                     style={localStorage.getItem("userAuth")==="admin"? barOn:barOff}>
                       어드민페이지
                       </NavLink></li>
