@@ -1,0 +1,127 @@
+
+.userDiv{
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 70%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin-left: 10%;
+    position: absolute;
+    top: 20%;
+    border-radius: 20px;
+    display: flex;
+}
+
+.myPageDiv {
+    background-color: #F7F9FB;
+    width: 55%;
+    position: absolute;
+    height: 65%;
+    align-items: center;
+    left: 35%;
+    top: 25%;
+    justify-content: space-between;
+    align-content: stretch;
+    display: flex;
+    flex-wrap: wrap;
+}
+.news {
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    border-radius: 30px;
+    width: 23%;
+    height: 40%;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    margin: auto;
+}
+.news:hover{
+    border: 2px solid #008BDA;
+}
+
+.userImg{
+    position: absolute;
+    top: 15%;
+    background-color: white;
+}
+.userName{
+    position: absolute;
+    text-align: center;
+}
+.userUl{
+    position: absolute;
+    top: 65%;
+}
+
+.myPageText{
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20%;
+    left: 36%;
+ }
+
+.bookMark{
+    font-weight:bold;
+    background-image:linear-gradient(90deg, #7CF2FF 10%,#3874F8 90% );
+    text-align:center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-decoration : none;
+    width:220%;
+    height: 2rem;
+    border-radius:10px;
+    position: relative;
+    left: -30%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+}
+.conditions{
+    font-weight:bold;
+    background-image:linear-gradient(90deg, #7CF2FF 10%,#3874F8 90% );
+    text-align:center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-decoration : none;
+    margin-top: 1rem;
+    width:180%;
+    height: 2rem;
+    left: 10%;
+    border-radius:10px;
+    position: relative;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+}
+.userInfos{
+    font-weight:bold;
+    background-image:linear-gradient(90deg, #7CF2FF 10%,#3874F8 90% );
+    text-align:center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-decoration : none;
+    margin-top: 1rem;
+    width:150%;
+    height: 2rem;
+    border-radius:10px;
+    position: relative;
+    left: 40%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+}
+.bookMark:hover, .userInfos:hover, .conditions:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
+    color: white;
+}
+
+.conditionsPage{
+    border: 1px solid #737373;
+    position: absolute;
+    width: 50%;
+    height: 65%;
+    background-color: white;
+    left: 35%;
+    top: 25%;
+    text-align: center;
+    overflow: scroll;
+}
+.conditionsPage::-webkit-scrollbar {
+    display: none;
+}

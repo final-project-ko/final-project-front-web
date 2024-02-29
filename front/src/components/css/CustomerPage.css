@@ -1,0 +1,122 @@
+
+
+.customerMent{
+    position: relative;
+    width: 27%;
+    text-align: center;
+    margin: auto;
+    color: #918F8F;
+    top: 5rem;
+    font-size: 1.1rem;
+}
+
+.searchBar{
+    position: relative;
+    margin: auto;
+    top: 7rem;
+    width: 30%;
+    height: 4rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background-color: white;
+    border-radius: 20px;
+}
+
+.searchText{
+    position: relative;
+    font-size: 1.5rem;
+    width: 80%;
+    top: 0.7rem;
+    border: none;
+    left: 5%;
+    background-color: white;
+}
+.searchText::placeholder{
+    color: #b0b0b0;
+}
+
+.serchBtn{
+    position: relative;
+    left: 10%;
+    top: 1rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.searchUl {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    width: 100%;
+    justify-content: center;
+    background-color: white;
+    height: 100%;
+}
+.searchUl li {
+    margin: 6%;
+    font-weight: bolder;
+}
+.searchUl li:hover{
+    color: #008BDA;
+    text-decoration: underline;
+    text-decoration-color: #008BDA;
+}
+
+.searchMenu {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 10%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: auto;
+    position: absolute;
+    top: 35%;
+    left: 15%;
+
+}
+
+/*  기본 안내 css  */
+.announcement {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 50%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: auto;
+    position: absolute;
+    top: 45%;
+    left: 15%;
+}
+
+/*  공지사항 css */
+.notice{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 50%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: auto;
+    position: absolute;
+    top: 45%;
+    left: 15%;
+}
+/* 1대1 문의 css */
+.inquiry {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 50%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: auto;
+    position: absolute;
+    top: 45%;
+    left: 15%;
+}

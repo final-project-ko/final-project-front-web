@@ -1,0 +1,53 @@
+
+.adminDiv{
+    border-bottom: 2px solid #bbbbbb;
+    position: absolute;
+    width: 95%;
+    height: 15%;
+    left: 2%;
+    background-color: white;
+}
+.adminMainText{
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    font-weight: bolder;
+    color: #575656;
+}
+.adminLogOut{
+    position: absolute;
+    top: 75%;
+    left: 90%;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    color: #8d8d8d;
+}
+
+.adminNav{
+    position: absolute;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    top: 20%;
+    left: 5%;
+    width: 15%;
+    height: 40%;
+    background-color: white;
+}
+.adminUl{
+    position: relative;
+    text-align: center;
+    background-color: white;
+    left: 10%;
+    width: 75%;
+}
+.adminUl li{
+    margin-top: 10%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+}
+.adminUl li:hover{
+    background-color: #8d8d8d;
+    text-decoration: none;
+}

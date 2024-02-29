@@ -1,0 +1,101 @@
+
+
+.adminContentTitle{
+
+    position: absolute;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    width: 15%;
+    height: 60%;
+    top: 27%;
+    left: 24%;
+    color: #575656;
+}
+
+.adminChoiceCategory{
+    position: absolute;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    width: 15%;
+    height: 5%;
+    top: 20%;
+    left: 24%;
+    color: #575656;
+}
+
+.adminContentContent{
+
+    position: absolute;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    width: 40%;
+    height: 60%;
+    top: 27%;
+    left: 45%;
+    color: #575656;
+}
+.adminContentModify{
+    position: absolute;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    width: 18%;
+    height: 5%;
+    top: 20%;
+    left: 45%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #8d8d8d;
+    font-size: 1.2rem;
+}
+.adminContentDelete{
+    position: absolute;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    width: 18%;
+    height: 5%;
+    top: 20%;
+    left: 67%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: #8d8d8d;
+    font-size: 1.2rem;
+}
+.adminContentModify:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 1);
+    font-weight: bolder;
+}
+.adminContentDelete:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 1);
+    font-weight: bolder;
+}
+
+.adminNew{
+
+    border: none;
+    margin-top: 3%;
+}
+
+.adminNew:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+}
+
+.adminTextTitle{
+    position: relative;
+    left: 4%;
+    font-size: 1.3rem;
+    border: none;
+    width: 90%;
+}
+.adminTextTitle:hover{
+    border: none;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.adminTextDesc{
+    position: relative;
+    left: 4%;
+    font-size: 1.3rem;
+    border: none;
+    width: 90%;
+    height: 70%;
+}
+.adminTextDesc:hover{
+    border: none;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}

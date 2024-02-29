@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: #F7F9FB;
+}
+
+.navBox {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: 3.3rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: auto;
+    position: relative;
+    margin-top: 2%;
+    border-radius: 30px;
+    font-weight: bold;
+
+}
+.mainH1 {
+    position: relative;
+    left: 1%;
+    font-weight: bold;
+
+}
+
+.mainPage {
+    background-color: white;
+    font-size : 2rem;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+    text-decoration : none;
+    color: #008BDA;
+}
+
+
+.mainUl {
+    display: flex;
+    align-items: center;
+
+}
+
+li {
+    background-color: white;
+    padding : 5px;
+    list-style-type: none;
+}
+li:hover{
+    text-decoration: underline;
+}
+.loginDiv {
+    margin-right: 1%;
+    width: 5%;
+    height: 60%;
+    border-radius: 20px;
+    text-align: center;
+    align-items: center;
+    color: white;
+    background-color: #008BDA;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.toggle {
+    border: none;
+    position: absolute;
+    left: 9.5%;
+    top: 4.5%;
+    background-color: white;
+}
+
+.menuBar{
+    position: absolute;
+    left: 80%;
+    width: 5%;
+    height: 3%;
+    top: 5%;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: white;
+}
+
+.showNav{
+    left: 88%;
+    position: absolute;
+    top: 4.8%;
+    border: none;
+    cursor: pointer;
+    width: 5%;
+    overflow: hidden;
+    height: 3%;
+    background-color: white;
+    z-index: 1;
+}
+.showNav:hover{
+    height: 15%;
+}
