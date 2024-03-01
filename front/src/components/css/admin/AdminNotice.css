@@ -1,0 +1,29 @@
+
+.adminNotice{
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  top: 12%;
+  left: 22%;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.adminNoticeTitle{
+  position: absolute;
+  height: 60%;
+  width: 15%;
+  top: 20%;
+  font-size: 2rem;
+  background-color: white;
+}
+.adminNoticeText{
+  position: absolute;
+  height: 60%;
+  width: 80%;
+  top: 20%;
+  font-size: 2rem;
+  background-color: white;
+  left: 15%;
+}

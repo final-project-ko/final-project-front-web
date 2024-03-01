@@ -47,10 +47,14 @@ const Navbar = ( {toggle, setToggle} ) => {
     const loginBtn = localStorage.getItem("userCode")? "LogOut" : "LogIn";
 
     const barOn = {
-        display:'block'
+      textDecoration : 'none',
+        display:'block',
+        color:'black'
     }
     const barOff = {
-        display: 'none'
+      textDecoration : 'none',
+        display: 'none',
+        color:'black'
     }
 
     const set = toggle? <BiWorld  size="40" color="gray" style={{backgroundColor: "white"}}/> : <FcGlobe  size="40" style={{backgroundColor: "white"}}/>
@@ -95,7 +99,7 @@ const Navbar = ( {toggle, setToggle} ) => {
 
                 {/*로그인 만들때 사용할 div*/}
                 <div className='loginDiv' onClick={loginHandler}>
-                    <NavLink to={loginBtn==="LogIn"?"/login" : "/"} style={{textDecoration:"none",color:"black"}}>{loginBtn}</NavLink>
+                    <NavLink to={loginBtn==="LogIn"?"/login" : "/"} style={{textDecoration:"none",color:"white",backgroundColor:"#008BDA"}}>{loginBtn}</NavLink>
 
                 </div>
                 {/*추가로 로그인 완료 시 마이페이지로 보내는 기능도 만들어야 함*/}
@@ -114,7 +118,7 @@ const Navbar = ( {toggle, setToggle} ) => {
                     <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>자유게시판</NavLink></li>
                     <li><NavLink to={localStorage.getItem("userAuth")==="admin"?"/admin":"/"} 
                     style={localStorage.getItem("userAuth")==="admin"? barOn:barOff}>
-                      어드민페이지
+                      어드민
                       </NavLink></li>
                 </ul>
 

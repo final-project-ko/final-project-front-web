@@ -25,13 +25,20 @@ const AdminUser = () => {
     userInfo();
 },[]);
 
+  const userInfoHandler = (article) => {
+    const name = article.userName;
+    const email = article.userEmail;
+    const Id = article.userId;
+    const info = {display:"block"};
+  }
+
 
     return (
         <>
   <div className="userInfo">
     <h2>유저정보</h2>
     {articles.map((article, index) => (
-      <button className="allUsers" id={`news${index + 1}`} key={index}>
+      <button className="allUsers" id={`news${index + 1}`} key={index} onClick={userInfoHandler(article)}>
         <div className="userText">
           <strong>이름:</strong> {article.userName}
         </div>
@@ -44,6 +51,8 @@ const AdminUser = () => {
       </button>
     ))}
   </div>
+  <div className="userInfoChange"></div>
+
         </>
     )
 

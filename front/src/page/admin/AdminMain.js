@@ -6,6 +6,7 @@ import AdminDash from "./pages/AdminDash";
 import AdminUser from "./pages/AdminUser";
 import AdminContent from "./pages/AdminContent";
 import AdminSetting from "./pages/AdminSetting";
+import AdminNotice from "./pages/AdminNotice";
 const AdminMain = () => {
 
 
@@ -23,7 +24,7 @@ const AdminMain = () => {
     setPage("AdminContent");
   }
   const pageChangeHandler4 = () => {
-    setPage("AdminSetting");
+    setPage("AdminNotice");
   }
   const getAdminComponent = () => {
     switch (page) {
@@ -33,8 +34,8 @@ const AdminMain = () => {
         return <AdminUser />;
       case "AdminContent":
         return <AdminContent />;
-      case "AdminSetting":
-        return <AdminSetting />;
+      case "AdminNotice":
+        return <AdminNotice />;
       default:
         return null;
     }
@@ -101,10 +102,10 @@ const AdminMain = () => {
             </li>
             <li
               onClick={(e) => { pageChangeHandler4(e); }}
-              value="AdminSetting"
-              style={page === "AdminSetting" ? choice : nonChoice}
+              value="AdminNotice"
+              style={page === "AdminNotice" ? choice : nonChoice}
             >
-              설정
+              공지사항 입력
             </li>
           </ul>
         </div>
