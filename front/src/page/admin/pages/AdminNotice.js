@@ -31,7 +31,8 @@ const formats = [
 const AdminNotice = () => {
   
  const [values, setValues] = useState();
-  
+ const [title,setTitle] = useState(""); 
+
  const modules = useMemo(() => {
     return {
       toolbar: {
@@ -51,8 +52,15 @@ const AdminNotice = () => {
     };
   }, []);
 
+  const handleTitleChange = (e) =>{
+    setTitle(e.currentTarget.value);
+  }
+
+
 	return(
     <div className='adminNotice'>
+      <label htmlFor="title">제목</label>
+      <input id='title' type='text' onChange={handleTitleChange}/>
       <div className='adminNoticeTitle'>
         <p>본문 내용</p>
       </div>
@@ -63,6 +71,8 @@ const AdminNotice = () => {
         formats={formats}
         onChange={setValues}
       />
+
+      <button >등록</button>
     </div>
     )
 }

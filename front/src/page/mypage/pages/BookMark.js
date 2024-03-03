@@ -9,7 +9,7 @@ const BookMark = () => {
     }
     return (
         <>
-            <h3 className="myPageText"> > 북마크 목록</h3>
+            <h3 className="myPageText">  북마크 목록</h3>
             <div className='myPageDiv'>
                 {/* img, title 카테고리별 기사에서 꺼내오는 코드로 바꾸어야 함 */}
                 <button className="news" id='news1' onClick={onClickHandler}>

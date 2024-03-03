@@ -7,6 +7,7 @@ import AdminUser from "./pages/AdminUser";
 import AdminContent from "./pages/AdminContent";
 import AdminSetting from "./pages/AdminSetting";
 import AdminNotice from "./pages/AdminNotice";
+import AdminNoticeList from "./pages/AdminNoticeList";
 const AdminMain = () => {
 
 
@@ -24,6 +25,9 @@ const AdminMain = () => {
     setPage("AdminContent");
   }
   const pageChangeHandler4 = () => {
+    setPage("AdminNoticeList");
+  }
+  const pageChangeHandler5 = () => {
     setPage("AdminNotice");
   }
   const getAdminComponent = () => {
@@ -34,6 +38,8 @@ const AdminMain = () => {
         return <AdminUser />;
       case "AdminContent":
         return <AdminContent />;
+      case "AdminNoticeList":
+        return <AdminNoticeList />;
       case "AdminNotice":
         return <AdminNotice />;
       default:
@@ -102,6 +108,13 @@ const AdminMain = () => {
             </li>
             <li
               onClick={(e) => { pageChangeHandler4(e); }}
+              value="AdminNoticeList"
+              style={page === "AdminNoticeList" ? choice : nonChoice}
+            >
+              공지사항 내역
+            </li>
+            <li
+              onClick={(e) => { pageChangeHandler5(e); }}
               value="AdminNotice"
               style={page === "AdminNotice" ? choice : nonChoice}
             >
