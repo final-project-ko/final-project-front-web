@@ -129,9 +129,9 @@ const AdminContent = () => {
             </div>
 
             <div className="adminContentContent">
-                <h1>제목</h1>
+                <h2>제목</h2>
                 <textarea className="adminTextTitle" value={inputTitle} onChange={titleChange}></textarea>
-                <h1>본문 내용</h1>
+                <h2>본문 내용</h2>
                 <textarea className="adminTextDesc" value={inputDesc} onChange={descChange}></textarea>
             </div>
 

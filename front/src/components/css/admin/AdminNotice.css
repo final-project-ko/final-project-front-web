@@ -2,28 +2,117 @@
 .adminNotice{
   position: absolute;
   width: 70%;
-  height: 70%;
+  height: 74%;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-  top: 12%;
-  left: 22%;
+  top: 14%;
+  left: 23%;
   border-radius: 10px;
   background-color: white;
 }
 
-.adminNoticeTitle{
-  position: absolute;
-  height: 60%;
-  width: 15%;
-  top: 20%;
-  font-size: 2rem;
-  background-color: white;
-}
 .adminNoticeText{
   position: absolute;
-  height: 60%;
+  height: 65%;
   width: 80%;
   top: 20%;
   font-size: 2rem;
   background-color: white;
+  left: 10%;
+}
+
+.title{
+  background-color: white;
+  position: absolute;
   left: 15%;
+  top: 11%;
+}
+.adminInsert{
+  position: absolute;
+  left: 80%;
+  top: 3%;
+  font-size: 1.3rem;
+  border: 2px solid #008BDA;
+  width: 10%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.adminInsert:hover{
+  background-color: #008BDA;
+}
+
+.admintitle{
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  width: 60%;
+  height: 5%;
+  border: none;
+  border-bottom: 1px solid rgb(79, 79, 79);
+  background-color: white;
+}
+
+.adminNoticeContent{
+  position: absolute;
+  left: 60%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    border-radius: 10px;
+  top: 22%;
+  width: 30%;
+  height: 60%;
+  background-color: white;
+}
+h2{
+  background-color: white;
+}
+.adminNoticeTitle{
+  width: 80%;
+  left: 5%;
+  font-size: 1.2rem;
+  position: relative;
+  border: none;
+  background-color: white;
+}
+.adminNoticeAllContent{
+  width: 80%;
+  height: 60%;
+  left: 5%;
+  font-size: 1.2rem;
+  position: relative;
+  top: 2rem;
+  border: none;
+  background-color: white;
+}
+.adminNoticeModify{
+  position: absolute;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  width: 10%;
+  height: 5%;
+  top: 15%;
+  left: 60%;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #8d8d8d;
+  font-size: 1.2rem;
+}
+.adminNoticeDelete{
+  position: absolute;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  width: 10%;
+  height: 5%;
+  top: 15%;
+  left: 80%;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #8d8d8d;
+  font-size: 1.2rem;
+}
+.adminNoticeModify:hover{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 1);
+  font-weight: bolder;
+}
+.adminNoticeDelete:hover{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 1);
+  font-weight: bolder;
 }

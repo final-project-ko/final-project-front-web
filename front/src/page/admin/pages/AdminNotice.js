@@ -9,6 +9,7 @@ import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import "../../../components/css/admin/AdminNotice.css";
 
+
 const formats = [
   'font',
   'header',
@@ -29,11 +30,12 @@ const formats = [
 ];
 
 const AdminNotice = () => {
-  
- const [values, setValues] = useState();
- const [title,setTitle] = useState(""); 
 
- const modules = useMemo(() => {
+  const [values, setValues] = useState();
+  const [title, setTitle] = useState("");
+
+
+  const modules = useMemo(() => {
     return {
       toolbar: {
         container: [
@@ -52,29 +54,52 @@ const AdminNotice = () => {
     };
   }, []);
 
-  const handleTitleChange = (e) =>{
+  const handleTitleChange = (e) => {
     setTitle(e.currentTarget.value);
+  }
+  const insertHandler = async () => {
+    await fetch("/api/notice/insertNotice", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        values: values,
+      }),
+    }).then(res => {
+      if (res.ok) {
+        alert("등록 완료");
+        setTitle("");
+        setValues("");
+
+      } else {
+        alert("오류 발생 다시 시도 해 주세요");
+      }
+    })
+
   }
 
 
-	return(
-    <div className='adminNotice'>
-      <label htmlFor="title">제목</label>
-      <input id='title' type='text' onChange={handleTitleChange}/>
-      <div className='adminNoticeTitle'>
-        <p>본문 내용</p>
-      </div>
-      <ReactQuill
-        className='adminNoticeText'
-        theme="snow"
-        modules={modules}
-        formats={formats}
-        onChange={setValues}
-      />
 
-      <button >등록</button>
+  return (
+    <div className='adminNotice'>
+
+        <p className='title'>제목</p>
+        <input className='admintitle' type='text' onChange={handleTitleChange} />
+
+
+        <ReactQuill
+          className='adminNoticeText'
+          theme="snow"
+          modules={modules}
+          formats={formats}
+          onChange={setValues}
+        />
+
+      <button className='adminInsert' onClick={insertHandler}>등록</button>
     </div>
-    )
+  )
 }
 
 export default AdminNotice;

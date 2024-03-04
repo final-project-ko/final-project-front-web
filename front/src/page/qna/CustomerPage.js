@@ -8,9 +8,7 @@ const CustomerPage = () => {
     const [page, setPage] = useState("Announcement");
 
     // 페이지 변경 핸들러 함수
-    const pageChangeHandler2 = () => {
-        setPage("Announcement");
-    }
+
     const pageChangeHandler3 = () => {
         setPage("Notice");
     }
@@ -21,8 +19,7 @@ const CustomerPage = () => {
     // 각 메뉴 항목에 대한 컴포넌트 매핑
     const getPageComponent = () => {
         switch (page) {
-            case "Announcement":
-                return <Announcement />;
+
             case "Notice":
                 return <Notice />;
             case "Inquiry":
@@ -62,13 +59,7 @@ const CustomerPage = () => {
 
             <div className="searchMenu">
                 <ul className='searchUl'>
-                    <li
-                        onClick={(e) => { pageChangeHandler2(e);}}
-                        value="Announcement"
-                        style={page === "Announcement" ? choice : nonChoice}
-                    >
-                        기본 안내
-                    </li>
+
                     <li
                         onClick={(e) => { pageChangeHandler3(e);}}
                         value="Notice"
