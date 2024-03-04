@@ -1,5 +1,5 @@
 import {useLocation, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import "../../components/css/DetailsNews.css"
 
 const DetailsNews = ({ toggle }) => {
@@ -29,13 +29,17 @@ const DetailsNews = ({ toggle }) => {
         navigate(`/detailNews/${article.code}`, {state : {article, articles}})
     }
 
+    // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
+    const formattedDescription = article.description.replace(/다\.(?!$)/g, '다.\n\n');
+
     /* 선택한 뉴스, 추천뉴스 반환 */
     return (
         <div className='detailsNewsDiv'>
             <div className='selectedNewsDiv'>
+                {/*<div className="scroll-bar" ref={scrollBarIndicatorRef}></div>*/}
                 <span className='detailsNewsTitle'>{article.title}</span>
                 <img className='detailsNewsImg' src={article.image}/>
-                <span className='detailsNewsDescription'>{article.description}</span>
+                <span className='detailsNewsDescription'>{formattedDescription}</span>
                 <span className='detailsNewsLinkText'>
                     {linkText}&nbsp;&nbsp;
                     <a className='detailsNewsLink' href={article.url} target='_blank'>{linkUrlText}</a>
