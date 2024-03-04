@@ -8,7 +8,7 @@ import { HiOutlineMenu } from "react-icons/hi";
 const Navbar = ( {toggle, setToggle} ) => {
 
     // const [toggle,setToggle] = useState(true);
-    const [login,setLogin] = useState(false);
+    const [login,setLogin] = useState();
     const [showItem, setShowItem] = useState(false);
     const [navLinkPrefix, setNavLinkPrefix] = useState("kr_");
 
@@ -29,18 +29,36 @@ const Navbar = ( {toggle, setToggle} ) => {
     }, [navLinkPrefix]);
 
     const loginHandler = () => {
-        setLogin(!login);
+      if(localStorage.getItem("userCode")){
+        setLogin(true);
+      }  else{
+        setLogin(false);
+      }
+      if(loginBtn ==="LogOut"){
+        window.localStorage.removeItem("userCode");
+        window.localStorage.removeItem("userName");
+        window.localStorage.removeItem("userEmail");
+        window.localStorage.removeItem("userAuth");
+      }
+
     }
+
+
+    const loginBtn = localStorage.getItem("userCode")? "LogOut" : "LogIn";
+
     const barOn = {
-        display:'block'
+      textDecoration : 'none',
+        display:'block',
+        color:'black'
     }
     const barOff = {
-        display: 'none'
+      textDecoration : 'none',
+        display: 'none',
+        color:'black'
     }
 
-    const set = toggle? <BiWorld  size="40" color="gray" color style={{backgroundColor: "white"}}/> : <FcGlobe  size="40" style={{backgroundColor: "white"}}/>
+    const set = toggle? <BiWorld  size="40" color="gray" style={{backgroundColor: "white"}}/> : <FcGlobe  size="40" style={{backgroundColor: "white"}}/>
 
-    const loginBtn = login? "LogOut" : "LogIn";
     const nonChoice = {
         background: 'transparent',
         border: 0,
@@ -81,7 +99,7 @@ const Navbar = ( {toggle, setToggle} ) => {
 
                 {/*로그인 만들때 사용할 div*/}
                 <div className='loginDiv' onClick={loginHandler}>
-                    <NavLink to={loginBtn==="LogIn"?"/login" : "/"} style={{textDecoration:"none",color:"black"}}>{loginBtn}</NavLink>
+                    <NavLink to={loginBtn==="LogIn"?"/login" : "/"} style={{textDecoration:"none",color:"white",backgroundColor:"#008BDA"}}>{loginBtn}</NavLink>
 
                 </div>
                 {/*추가로 로그인 완료 시 마이페이지로 보내는 기능도 만들어야 함*/}
@@ -92,13 +110,16 @@ const Navbar = ( {toggle, setToggle} ) => {
 
             {/* 로그인 시 메뉴바 보이는 버튼  */}
 
-            <button className="showNav"  style={login? barOn:barOff}>
+            <button className="showNav"  style={loginBtn==="LogOut"? barOn:barOff}>
                 <HiOutlineMenu size="30" color="#008BDA"  style={{backgroundColor: "white"}}/>
                 <ul className="mypageNav">
                     <li><NavLink to={"/customer"} style={{textDecoration:"none",color:"black"}}>고객센터</NavLink></li>
                     <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>마이페이지</NavLink></li>
                     <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>자유게시판</NavLink></li>
-                    <li><NavLink to={"/admin"} style={{textDecoration:"none",color:"black"}}>어드민페이지</NavLink></li>
+                    <li><NavLink to={localStorage.getItem("userAuth")==="admin"?"/admin":"/"} 
+                    style={localStorage.getItem("userAuth")==="admin"? barOn:barOff}>
+                      어드민
+                      </NavLink></li>
                 </ul>
 
             </button>

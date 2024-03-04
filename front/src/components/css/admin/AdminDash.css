@@ -3,35 +3,49 @@
 .visitor{
     position: absolute;
     width: 30%;
-    height: 30%;
+    height: 35%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 25%;
+    top: 15%;
     left: 25%;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .newPost{
     position: absolute;
     width: 30%;
-    height: 30%;
+    height: 35%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 25%;
+    top: 15%;
     left: 60%;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .newInquiry{
     position: absolute;
     width: 30%;
-    height: 30%;
+    height: 35%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 60%;
+    top: 55%;
     left: 25%;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .comments{
     position: absolute;
     width: 30%;
-    height: 30%;
+    height: 35%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 60%;
+    top: 55%;
     left: 60%;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.visitor h2, .newPost h2, .newInquiry h2, .comments h2 {
+  margin: 5%;
+
+  background-color: white;
 }

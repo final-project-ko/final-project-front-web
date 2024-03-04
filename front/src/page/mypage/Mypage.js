@@ -39,6 +39,9 @@ const Mypage = () => {
         color:"white"
     }
 
+    const userName = localStorage.getItem("userName");
+    const userEmail = localStorage.getItem("userEmail");
+
     return (
         <>
             <div className="myPage">
@@ -48,8 +51,8 @@ const Mypage = () => {
                         <FaRegUserCircle size="150" color="#7CF2FF" style={{backgroundColor:"white"}}/>
                     </div>
                     <div className="userName">
-                        <h2 style={{backgroundColor:"white"}}>정민식 님</h2>
-                        <h3 style={{backgroundColor:"white"}}>jmsdew@naver.com</h3>
+                        <h2 style={{backgroundColor:"white"}}>{userName} 님</h2>
+                        <h3 style={{backgroundColor:"white"}}>{userEmail}</h3>
                     </div>
                     <ul className="userUl">
                         <li
