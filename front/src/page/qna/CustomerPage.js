@@ -1,29 +1,36 @@
 import "../../components/css/CustomerPage.css";
 import { FaSearch } from "react-icons/fa";
 import {useState} from "react";
-import Announcement from "./Announcement";
 import Notice from "./Notice";
 import Inquiry from "./Inquiry";
+import InputNotice from "./InputNotice";
+import InquiryList from "./InquiryList";
 const CustomerPage = () => {
-    const [page, setPage] = useState("Announcement");
-
+    const [page, setPage] = useState("Notice");
+    const [inputText, setInputText] = useState("");
     // 페이지 변경 핸들러 함수
 
-    const pageChangeHandler3 = () => {
+    const pageChangeHandler1 = () => {
         setPage("Notice");
     }
-    const pageChangeHandler4 = () => {
+    const pageChangeHandler2 = () => {
         setPage("Inquiry");
     }
+    const pageChangeHandler3 = () => {
+      setPage("InquiryList");
+  }
 
     // 각 메뉴 항목에 대한 컴포넌트 매핑
     const getPageComponent = () => {
         switch (page) {
-
+            case "InputNotice":
+                return <InputNotice inputText={inputText}/>;
             case "Notice":
                 return <Notice />;
             case "Inquiry":
                 return <Inquiry />;
+                case "InquiryList":
+                  return <InquiryList />;
             default:
                 return null;
         }
@@ -45,7 +52,13 @@ const CustomerPage = () => {
         textUnderlineOffset: '0.7rem',
         textDecorationThickness: '0.2rem'
     }
+    const inputHanlder = (e) => {
+      setInputText(e.target.value);
+    }
 
+    const searchHandler = () => {
+        setPage("InputNotice");
+    }
 
     return (
         <>
@@ -53,26 +66,33 @@ const CustomerPage = () => {
                 오늘은 서비스를 이용 하시는 데 도움이 필요 하신가요?
             </div>
             <div className="searchBar">
-                <input type="text" className="searchText" placeholder="도움말을 검색 해보세요"/>
-                <button className="serchBtn"><FaSearch  size="30" color="gray"/></button>
+                <input type="text" className="searchText" placeholder="도움말을 검색 해보세요" value={inputText} onChange={inputHanlder}/>
+                <button className="serchBtn" onClick={searchHandler}><FaSearch  size="30" color="gray"/></button>
             </div>
 
             <div className="searchMenu">
                 <ul className='searchUl'>
 
                     <li
-                        onClick={(e) => { pageChangeHandler3(e);}}
+                        onClick={(e) => { pageChangeHandler1(e);}}
                         value="Notice"
                         style={page === "Notice" ? choice : nonChoice}
                     >
                         공지 사항
                     </li>
                     <li
-                        onClick={(e) => { pageChangeHandler4(e);}}
+                        onClick={(e) => { pageChangeHandler2(e);}}
                         value="Inquiry"
                         style={page === "Inquiry" ? choice : nonChoice}
                     >
-                        1대1 문의
+                        1:1 문의
+                    </li>
+                    <li
+                        onClick={(e) => { pageChangeHandler3(e);}}
+                        value="InquiryList"
+                        style={page === "InquiryList" ? choice : nonChoice}
+                    >
+                        문의 내역
                     </li>
                 </ul>
             </div>
