@@ -81,19 +81,20 @@ const CustomerPage = () => {
                         공지 사항
                     </li>
                     <li
-                        onClick={(e) => { pageChangeHandler2(e);}}
-                        value="Inquiry"
-                        style={page === "Inquiry" ? choice : nonChoice}
-                    >
-                        1:1 문의
-                    </li>
-                    <li
                         onClick={(e) => { pageChangeHandler3(e);}}
                         value="InquiryList"
                         style={page === "InquiryList" ? choice : nonChoice}
                     >
                         문의 내역
                     </li>
+                    <li
+                        onClick={(e) => { pageChangeHandler2(e);}}
+                        value="Inquiry"
+                        style={page === "Inquiry" ? choice : nonChoice}
+                    >
+                        1:1 문의
+                    </li>
+
                 </ul>
             </div>
             {getPageComponent()}
