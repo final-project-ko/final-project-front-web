@@ -198,3 +198,34 @@ p{
 .inquiryButton:hover{
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
+
+.inquiryList{
+  width: 90%;
+  border-bottom: 1px solid #d2d1d1;
+  border-radius: 5px;
+  margin-top: 5px;
+  align-items: center;
+}
+.inquiryReply{
+  font-size: 1.2rem;
+  text-align: left;
+  color: red;
+  background-color: white;
+  margin-top: 1.2rem;
+}
+.inquiryTitle{
+  padding: 20px 15px;
+  font-size: 1.5rem;
+  text-align: left;
+  background-color: white;
+  font-weight: bold;
+}
+.inquiryDate{
+  font-size: 1.2rem;
+  text-align: right;
+  background-color: white;
+  margin-top: -1.2rem;
+}
+.inquiryList:hover{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+}
