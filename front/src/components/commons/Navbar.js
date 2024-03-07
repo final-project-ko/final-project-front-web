@@ -4,13 +4,17 @@ import {useEffect, useState} from "react";
 import { BiWorld } from "react-icons/bi";
 import { FcGlobe } from "react-icons/fc";
 import { HiOutlineMenu } from "react-icons/hi";
+import useStore from "../../store";
+
 
 const Navbar = ( {toggle, setToggle} ) => {
+
 
     // const [toggle,setToggle] = useState(true);
     const [login,setLogin] = useState();
     const [showItem, setShowItem] = useState(false);
     const [navLinkPrefix, setNavLinkPrefix] = useState("kr_");
+    const { userId, auth, setUserInfo } = useStore();
 
     const navigate = useNavigate();
 
@@ -23,28 +27,60 @@ const Navbar = ( {toggle, setToggle} ) => {
 
     }
 
+    useEffect(() => {
+      const accessToken = localStorage.getItem("todayId");
+      console.log(accessToken);
+      const fetchData = async () => {
+        if (accessToken) {
+          if (tokenValid(accessToken)) {
+            console.log("토큰 있음");
+            try {
+              const response = await fetch(`/login/kakao`, {  
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  accessToken: accessToken
+                })
+              });
+              const data = await response.json();
+              console.log(data);
+              setUserInfo(data.id, data.userAuth);
+              /* setUserId(data.id);
+              setAuth(data.userAuth); */
+              setLogin(true);
+              console.log("userId :"+userId);
+            } catch (error) {
+              console.error(error);
+              setLogin(false);
+            }
+          }
+        } else {
+          console.log("토큰 없음");
+          setLogin(false);
+        }
+      };
+    
+      fetchData();
+    }, [tokenValid]); // accessToken을 의존성 배열에 추가
+
     // 토글 시 국내,해외 페이지 이동
     useEffect(() => {
         navigate(`${navLinkPrefix}total`);
     }, [navLinkPrefix]);
 
     const loginHandler = () => {
-      if(localStorage.getItem("userCode")){
-        setLogin(true);
-      }  else{
-        setLogin(false);
-      }
+
       if(loginBtn ==="LogOut"){
-        window.localStorage.removeItem("userCode");
-        window.localStorage.removeItem("userName");
-        window.localStorage.removeItem("userEmail");
-        window.localStorage.removeItem("userAuth");
+        window.localStorage.removeItem("todayId");
+        setLogin(false);
       }
 
     }
 
 
-    const loginBtn = localStorage.getItem("userCode")? "LogOut" : "LogIn";
+    const loginBtn = login? "LogOut" : "LogIn";
 
     const barOn = {
       textDecoration : 'none',
@@ -62,7 +98,7 @@ const Navbar = ( {toggle, setToggle} ) => {
     const nonChoice = {
         background: 'transparent',
         border: 0,
-        cursor: 'pointer',
+        cursor: 'pointer',  
         fontSize: '1.1rem',
         textDecoration : 'none',
         color:'black'
@@ -113,11 +149,11 @@ const Navbar = ( {toggle, setToggle} ) => {
             <button className="showNav"  style={loginBtn==="LogOut"? barOn:barOff}>
                 <HiOutlineMenu size="30" color="#008BDA"  style={{backgroundColor: "white"}}/>
                 <ul className="mypageNav">
-                    <li><NavLink to={"/customer"} style={{textDecoration:"none",color:"black"}}>고객센터</NavLink></li>
-                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>마이페이지</NavLink></li>
-                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}}>자유게시판</NavLink></li>
-                    <li><NavLink to={localStorage.getItem("userAuth")==="admin"?"/admin":"/"} 
-                    style={localStorage.getItem("userAuth")==="admin"? barOn:barOff}>
+                    <li><NavLink to={"/customer"} style={{textDecoration:"none",color:"black"}} userId={userId}>고객센터</NavLink></li>
+                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}} userId={userId}>마이페이지</NavLink></li>
+                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}} userId={userId}>자유게시판</NavLink></li>
+                    <li><NavLink to={auth ==="admin"?"/admin":"/"} 
+                    style={auth==="admin"? barOn:barOff}>
                       어드민
                       </NavLink></li>
                 </ul>
@@ -132,3 +168,32 @@ const Navbar = ( {toggle, setToggle} ) => {
 export default Navbar;
 
 
+const tokenValid = async (accessToken) => {
+  const url = "https://kapi.kakao.com/v1/user/access_token_info";
+
+  // 요청 헤더 설정
+  const headers = {
+    'Authorization': `Bearer ${accessToken}`
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: headers
+    });
+
+    const data = await response.json();
+    // 유효한 토큰인지 확인
+    if (data.id) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+
+  

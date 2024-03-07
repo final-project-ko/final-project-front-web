@@ -98,7 +98,7 @@ const AdminContent = () => {
 
                 <div className="adminNewsTitle">
                     {articles.map((article, index) => (
-                        <button className="adminNew" id={`news${index + 1}`} key={index} onClick={() => onClickHandler(article)}>
+                        <button className="adminNews" id={`news${index + 1}`} key={index} onClick={() => onClickHandler(article)}>
                             <div className="adminNewsText">{article.title}</div>
                         </button>
                     ))}

@@ -9,6 +9,10 @@
     top: 27%;
     left: 24%;
     color: #575656;
+    overflow-y: hidden;
+}
+.adminContentTitle:hover{
+  overflow-y: scroll;
 }
 
 .adminChoiceCategory{
@@ -66,13 +70,13 @@
     font-weight: bolder;
 }
 
-.adminNew{
+.adminNews{
 
     border: none;
     margin-top: 3%;
 }
 
-.adminNew:hover{
+.adminNews:hover{
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
 }
 

@@ -1,0 +1,19 @@
+
+.adminInquiry{
+  position: relative;
+  top: 1rem;
+  width: 51%;
+  margin-bottom: 2%;
+  height: 10%;
+  border: none;
+  background-color: white;
+
+}
+.adminInquiry:hover{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+}
+.adminInquiryTitle{
+  background-color: white;
+  text-align: left;
+  font-size: 1.2rem;
+}
