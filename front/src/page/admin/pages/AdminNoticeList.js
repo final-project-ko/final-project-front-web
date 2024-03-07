@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../../../components/css/admin/AdminNotice.css";
 const AdminNoticeList = () => {
 
-
+  const [page, setPage] = useState(false);
   const [articles, setArticles] = useState([]);
   const [notice, setNotice] = useState([]);
   const [title, setTitle] = useState("");
@@ -27,6 +27,7 @@ const AdminNoticeList = () => {
   }, [title]);
 
   const onClickHandler = (article) => {
+    setPage(true);
     setNotice(article);
     setTitle(article.notice_title);
     setContent(article.notice_content);
@@ -103,15 +104,15 @@ const AdminNoticeList = () => {
         ))}
       </div>
 
-      <div className="adminNoticeContent">
+      <div className="adminNoticeContent" style={page? {display:"block"} : {display:"none"}}>
         <h2>제목</h2>
         <textarea className="adminNoticeTitle" value={title} onChange={noticeTitleChange}></textarea>
         <h2>본문 내용</h2>
         <textarea className="adminNoticeAllContent" value={content} onChange={noticeContentChange}></textarea>
       </div>
 
-      <button className="adminNoticeModify" onClick={noticeModify}>수정</button>
-      <button className="adminNoticeDelete" onClick={noticeDelete}>삭제</button>
+      <button className="adminNoticeModify" onClick={noticeModify} style={page? {display:"block"} : {display:"none"}}>수정</button>
+      <button className="adminNoticeDelete" onClick={noticeDelete} style={page? {display:"block"} : {display:"none"}}>삭제</button>
 
     </>
   )

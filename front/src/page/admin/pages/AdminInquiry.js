@@ -4,7 +4,7 @@ import "../../../components/css/admin/AdminInquiry.css";
 
 const AdminInquiry = () => {
 
-  const [inquiry, setInquiry] = useState([]);
+  const [page, setPage] = useState(false);
   const [articles, setArticles] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -30,10 +30,11 @@ const AdminInquiry = () => {
   }, [title]);
 
   const onClickHandler = (article) => {
+    setPage(true);
     setTitle(article.inquiryTitle);
     setContent(article.inquiryContent);
     setCode(article.inquiryCode);
-    setUserCode(article.userCode);
+    setUserCode(article.userId);
   }
 
   const noticeTitleChange = (e) => {
@@ -78,7 +79,7 @@ const AdminInquiry = () => {
               <strong>제목:</strong> {article.inquiryTitle}
             </div>
             <div className="userText">
-              <strong>유저코드:</strong> {article.userCode}
+              <strong>유저아이디:</strong> {article.userId}
             </div>
             <div className="userText">
               <strong>등록일:</strong> {article.inquiryDate}
@@ -87,7 +88,7 @@ const AdminInquiry = () => {
         ))}
       </div>
 
-      <div className="adminNoticeContent">
+      <div className="adminNoticeContent" style={page? {display:"block"} : {display:"none"}}>
         <h2>제목</h2>
         <div className="adminNoticeTitle">{title}</div>
         <h2>내용</h2>
@@ -99,7 +100,7 @@ const AdminInquiry = () => {
       </div>
 
 
-      <button className="adminNoticeDelete" onClick={insertReply}>등록</button>
+      <button className="adminNoticeDelete" onClick={insertReply} style={page? {display:"block"} : {display:"none"}}>등록</button>
 
     </>
   )

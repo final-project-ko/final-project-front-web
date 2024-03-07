@@ -14,7 +14,7 @@ const Navbar = ( {toggle, setToggle} ) => {
     const [login,setLogin] = useState();
     const [showItem, setShowItem] = useState(false);
     const [navLinkPrefix, setNavLinkPrefix] = useState("kr_");
-    const { userId, auth, setUserInfo } = useStore();
+    const { userId, auth,userName,userEmail, setUserInfo } = useStore();
 
     const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const Navbar = ( {toggle, setToggle} ) => {
               });
               const data = await response.json();
               console.log(data);
-              setUserInfo(data.id, data.userAuth);
+              setUserInfo(data.id, data.userAuth, data.name, data.email);
               /* setUserId(data.id);
               setAuth(data.userAuth); */
               setLogin(true);
@@ -138,7 +138,7 @@ const Navbar = ( {toggle, setToggle} ) => {
                     <NavLink to={loginBtn==="LogIn"?"/login" : "/"} style={{textDecoration:"none",color:"white",backgroundColor:"#008BDA"}}>{loginBtn}</NavLink>
 
                 </div>
-                {/*추가로 로그인 완료 시 마이페이지로 보내는 기능도 만들어야 함*/}
+
             </header>
 
             {/*   해외뉴스 on off 버튼    */}
@@ -149,9 +149,8 @@ const Navbar = ( {toggle, setToggle} ) => {
             <button className="showNav"  style={loginBtn==="LogOut"? barOn:barOff}>
                 <HiOutlineMenu size="30" color="#008BDA"  style={{backgroundColor: "white"}}/>
                 <ul className="mypageNav">
-                    <li><NavLink to={"/customer"} style={{textDecoration:"none",color:"black"}} userId={userId}>고객센터</NavLink></li>
-                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}} userId={userId}>마이페이지</NavLink></li>
-                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black"}} userId={userId}>자유게시판</NavLink></li>
+                    <li><NavLink to={"/customer"} style={{textDecoration:"none",color:"black",backgroundColor: "white"}} userId={userId}>고객센터</NavLink></li>
+                    <li><NavLink to={"/mypage"} style={{textDecoration:"none",color:"black",backgroundColor: "white"}} userId={userId}>마이페이지</NavLink></li>
                     <li><NavLink to={auth ==="admin"?"/admin":"/"} 
                     style={auth==="admin"? barOn:barOff}>
                       어드민

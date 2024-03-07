@@ -4,9 +4,10 @@ import BookMark from "./pages/BookMark";
 import {useState} from "react";
 import Conditions from "./pages/Conditions";
 import UserInfo from "./pages/UserInfo";
+import useStore from "../../store";
 
 const Mypage = () => {
-
+  const { userId, auth,userName,userEmail, setUserInfo } = useStore();
     const [page, setPage] = useState("BookMark");
 
     // 페이지 변경 핸들러 함수
@@ -39,8 +40,7 @@ const Mypage = () => {
         color:"white"
     }
 
-    const userName = localStorage.getItem("userName");
-    const userEmail = localStorage.getItem("userEmail");
+
 
     return (
         <>

@@ -24,6 +24,8 @@ const CustomerPage = (userId) => {
     // 각 메뉴 항목에 대한 컴포넌트 매핑
     const getPageComponent = () => {
         switch (page) {
+            case "InputNotice":
+                return <InputNotice inputText={inputText}/>;
             case "Notice":
                 return <Notice />;
             case "Inquiry":
