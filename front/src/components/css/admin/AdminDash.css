@@ -1,51 +1,92 @@
-
-
-.visitor{
-    position: absolute;
-    width: 30%;
-    height: 35%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 15%;
-    left: 25%;
-    border-radius: 10px;
-    background-color: white;
+.visitor {
+  position: absolute;
+  width: 30%;
+  height: 35%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  top: 15%;
+  left: 25%;
+  border-radius: 10px;
+  background-color: white;
 }
 
-.newPost{
-    position: absolute;
-    width: 30%;
-    height: 35%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 15%;
-    left: 60%;
-    border-radius: 10px;
-    background-color: white;
+.newPost {
+  position: absolute;
+  width: 30%;
+  height: 35%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  top: 15%;
+  left: 60%;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden; 
 }
 
-.newInquiry{
-    position: absolute;
-    width: 30%;
-    height: 35%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 55%;
-    left: 25%;
-    border-radius: 10px;
-    background-color: white;
+
+.newInquiry {
+  position: absolute;
+  width: 30%;
+  height: 35%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  top: 55%;
+  left: 25%;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden; 
 }
 
-.comments{
-    position: absolute;
-    width: 30%;
-    height: 35%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    top: 55%;
-    left: 60%;
-    border-radius: 10px;
-    background-color: white;
+.comments {
+  position: absolute;
+  width: 30%;
+  height: 35%;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  top: 55%;
+  left: 60%;
+  border-radius: 10px;
+  background-color: white;
 }
 
-.visitor h2, .newPost h2, .newInquiry h2, .comments h2 {
+.visitor h2,
+.newPost h2,
+.newInquiry h2,
+.comments h2 {
   margin: 5%;
 
   background-color: white;
+}
+
+.adminNews2 {
+  position: relative;
+  top: -1.5rem;
+  border: none;
+  margin-top: 3%;
+}
+
+.adminNews2:hover {
+  text-decoration: underline;
+}
+.newPost h2 {
+  margin: 10px;
+}
+
+.adminNewsTitles {
+  height: calc(100% - 40px); /* 내용 영역의 높이를 조정합니다. h2의 마진이 10px씩 적용되므로 20px를 뺍니다. */
+  overflow-y: hidden; /* 스크롤이 필요한 경우에만 스크롤이 표시됩니다. */
+  padding: 10px; /* 내용과 컨테이너의 여백을 조정합니다. */
+}
+.adminNewsTitles:hover{
+  overflow-y: scroll;
+}
+
+.adminNews2 {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.adminNewsText {
+  font-size: 16px;
+  font-weight: bold;
 }

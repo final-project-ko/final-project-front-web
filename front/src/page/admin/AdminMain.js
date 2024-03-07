@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import AdminDash from "./pages/AdminDash";
 import AdminUser from "./pages/AdminUser";
 import AdminContent from "./pages/AdminContent";
-import AdminSetting from "./pages/AdminSetting";
 import AdminNotice from "./pages/AdminNotice";
 import AdminNoticeList from "./pages/AdminNoticeList";
+import AdminInquiry from "./pages/AdminInquiry";
 const AdminMain = () => {
 
 
@@ -30,6 +30,11 @@ const AdminMain = () => {
   const pageChangeHandler5 = () => {
     setPage("AdminNotice");
   }
+  const pageChangeHandler6 = () => {
+    setPage("AdminInquiry");
+  }
+
+
   const getAdminComponent = () => {
     switch (page) {
       case "AdminDash":
@@ -42,6 +47,8 @@ const AdminMain = () => {
         return <AdminNoticeList />;
       case "AdminNotice":
         return <AdminNotice />;
+      case "AdminInquiry":
+        return <AdminInquiry/>;
       default:
         return null;
     }
@@ -77,8 +84,8 @@ const AdminMain = () => {
 
 
         <div className="adminDiv">
-          <div className="adminMainText" style={{ backgroundColor: "white", color: "black"}}>www.today.co.kr</div>
-          <button className="adminLogOut" onClick={localHandler}><NavLink to={"/"} style={{backgroundColor: "white", textDecoration: "none", color: "black"}}>로그아웃</NavLink></button>
+          <div className="adminMainText" style={{ backgroundColor: "white", color: "black" }}>www.today.co.kr</div>
+          <button className="adminLogOut" onClick={localHandler}><NavLink to={"/"} style={{ backgroundColor: "white", textDecoration: "none", color: "black" }}>로그아웃</NavLink></button>
 
         </div>
 
@@ -104,7 +111,7 @@ const AdminMain = () => {
               value="AdminContent"
               style={page === "AdminContent" ? choice : nonChoice}
             >
-              콘텐츠
+              콘텐츠 수정
             </li>
             <li
               onClick={(e) => { pageChangeHandler4(e); }}
@@ -119,6 +126,20 @@ const AdminMain = () => {
               style={page === "AdminNotice" ? choice : nonChoice}
             >
               공지사항 입력
+            </li>
+            <li
+              onClick={(e) => { pageChangeHandler6(e); }}
+              value="AdminInquiry"
+              style={page === "AdminInquiry" ? choice : nonChoice}
+            >
+              문의 답글 등록
+            </li>
+            <li
+              onClick={(e) => { pageChangeHandler5(e); }}
+              value="AdminNotice"
+              style={page === "AdminNotice" ? choice : nonChoice}
+            >
+              댓글 관리
             </li>
           </ul>
         </div>

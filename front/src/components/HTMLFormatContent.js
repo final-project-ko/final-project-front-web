@@ -1,7 +1,7 @@
 
 const HTMLFormattedContent = ({ htmlContent }) => {
   return (
-   <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+   <div dangerouslySetInnerHTML={{ __html: htmlContent }}/>
  
 
   );

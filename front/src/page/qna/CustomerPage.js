@@ -5,10 +5,11 @@ import Notice from "./Notice";
 import Inquiry from "./Inquiry";
 import InputNotice from "./InputNotice";
 import InquiryList from "./InquiryList";
-const CustomerPage = () => {
+const CustomerPage = (userId) => {
     const [page, setPage] = useState("Notice");
     const [inputText, setInputText] = useState("");
     // 페이지 변경 핸들러 함수
+
 
     const pageChangeHandler1 = () => {
         setPage("Notice");
@@ -23,14 +24,12 @@ const CustomerPage = () => {
     // 각 메뉴 항목에 대한 컴포넌트 매핑
     const getPageComponent = () => {
         switch (page) {
-            case "InputNotice":
-                return <InputNotice inputText={inputText}/>;
             case "Notice":
                 return <Notice />;
             case "Inquiry":
-                return <Inquiry />;
-                case "InquiryList":
-                  return <InquiryList />;
+                return <Inquiry userId={userId}/>;
+            case "InquiryList":
+              return <InquiryList userId={userId}/>;
             default:
                 return null;
         }

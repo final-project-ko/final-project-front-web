@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import "../../components/css/CustomerPage.css";
 import ReactQuill from 'react-quill';
+import useStore from '../../store';
+
 
 const Inquiry = () => {
-  // 사용자가 작성한 문의사항 목록을 관리할 상태
-  const [inquiries, setInquiries] = useState([]);
+  const { userId, auth, setUserInfo } = useStore();
+
+
   // 새로운 문의사항을 작성하기 위한 상태
   const [newInquiry, setNewInquiry] = useState("");
 
+
   const [title,setTitle] = useState("");
+
 
 
   const formats = [
@@ -53,6 +58,7 @@ const Inquiry = () => {
 
   // 문의사항을 서버에 제출하는 함수
   const submitInquiry = async () => {
+
     try {
       const response = await fetch("/api/qna/insertInquiry", {
         method: "POST",
@@ -61,11 +67,11 @@ const Inquiry = () => {
         },
         body: JSON.stringify({
            title:title,
-           userCode: window.localStorage.getItem("userCode"),
+           id:userId,
            text: newInquiry 
           }),
       }).then(response => response.json())
-      .then(alert("등록 완료")).then(setTitle(""),setInquiries(""))
+      .then(alert("등록 완료")).then(setTitle(""),setNewInquiry(""))
       
     } catch (error) {
       alert("에러 발생")
@@ -75,7 +81,7 @@ const Inquiry = () => {
   return (
     <div className="inquiry">
       <p className='title'>제목</p>
-        <input className='admintitle' type='text' onChange={e => setTitle(e.target.value)} />
+        <input className='admintitle' type='text' value={title} onChange={e => setTitle(e.target.value)} />
       <p>1:1 문의</p>
       <div className="inquiryForm">
         <ReactQuill
@@ -84,6 +90,7 @@ const Inquiry = () => {
           modules={modules}
           formats={formats}
           onChange={setNewInquiry}
+          value={newInquiry}
         />
         <button className='inquiryButton' onClick={submitInquiry}>작성하기</button>
       </div>
