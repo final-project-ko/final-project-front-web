@@ -83,7 +83,7 @@ const Inquiry = () => {
       <p className='title'>제목</p>
         <input className='admintitle' type='text' value={title} onChange={e => setTitle(e.target.value)} />
       <p>1:1 문의</p>
-      <div className="inquiryForm">
+      <div className="inquiryForm" >
         <ReactQuill
           className='inquiryText'
           theme="snow"

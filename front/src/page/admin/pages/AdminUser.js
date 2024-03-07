@@ -3,7 +3,8 @@ import "../../../components/css/admin/ADminUser.css";
 const AdminUser = () => {
     
   const [articles, setArticles] = useState([]);
-
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null);
   useEffect(() => {
     const userInfo = async () => {
         await fetch(`/api/user/admin`,{
@@ -25,11 +26,9 @@ const AdminUser = () => {
     userInfo();
 },[]);
 
-  const userInfoHandler = (article) => {
-    const name = article.userName;
-    const email = article.userEmail;
-    const Id = article.userId;
-    const info = {display:"block"};
+  const userInfoHandler = (article,index) => {
+    setSelectedArticle(article);
+    setSelectedButtonIndex(index);
   }
 
 
@@ -38,7 +37,12 @@ const AdminUser = () => {
   <div className="userInfo">
     <h2>유저정보</h2>
     {articles.map((article, index) => (
-      <button className="allUsers" id={`news${index + 1}`} key={index} onClick={userInfoHandler(article)}>
+      <button 
+      className={`allUsers ${selectedButtonIndex === index ? 'selected' : ''}`}
+            id={`news${index + 1}`}
+            key={index}
+            onClick={() => userInfoHandler(article, index)}
+      >
         <div className="userText">
           <strong>이름:</strong> {article.userName}
         </div>
@@ -46,13 +50,13 @@ const AdminUser = () => {
           <strong>이메일:</strong> {article.userEmail}
         </div>
         <div className="userText">
-          <strong>코드:</strong> {article.userCode}
+          <strong>코드:</strong> {article.userId}
         </div>
       </button>
     ))}
   </div>
   <div className="userInfoChange"></div>
-
+  <button className="adminNoticeDelete">탈퇴</button>
         </>
     )
 
