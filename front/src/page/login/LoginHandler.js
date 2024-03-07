@@ -13,13 +13,11 @@ const LoginHandler = (props) => {
     useEffect(() => {
         const kakaoLogin = async () => {
             await fetch(`/login/oauth/?code=${code}`,{
-                method: "POST",
+                method: "GET",
             }).then(res => res.json())
               .then(data => {
-                  localStorage.setItem("userCode",data.userCode);
-                  localStorage.setItem("userName",data.userName);
-                  localStorage.setItem("userEmail",data.userEmail);
-                  localStorage.setItem("userAuth",data.userAuth);
+                console.log(data);
+                  localStorage.setItem("todayId",data.accessToken);
 
               })
                 .catch(error =>{
