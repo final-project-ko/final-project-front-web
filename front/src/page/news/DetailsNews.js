@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import "../../components/css/DetailsNews.css"
+import useStore from "../../store";
 
 const DetailsNews = ({ toggle }) => {
 
@@ -15,8 +16,9 @@ const DetailsNews = ({ toggle }) => {
     const navigate = useNavigate();
 
     /* localStorage 에서 userCode, userEmail 꺼내옴 */
-    const userCode = localStorage.getItem('userCode');
-    const userEmail = localStorage.getItem('userEmail');
+    // const userEmail = localStorage.getItem('userEmail');
+    const { userId, auth,userName,userEmail, setUserInfo } = useStore();
+    const userCode = userId;
 
     /* 토글(국내,해외)에 따라 링크 문구 수정 */
     useEffect(() => {
@@ -62,15 +64,19 @@ const DetailsNews = ({ toggle }) => {
             if (!response.ok) {
                 throw new Error('서버 응답이 실패했습니다.');
             }
-
             console.log('comment submit success : ' + comment);
+            alert('댓글이 등록되었습니다.');
+
+            setComment(''); // 댓글 등록후 input박스 값 초기화
+
+            findCommentList(); // 댓글 등록 후 댓글 다시 불러옴
         } catch (error) {
             console.log('Error submit comment : ', error.message);
         }
     }
 
     /* 뉴스 별 댓글 조회 */
-    useEffect(() => {
+    // useEffect(() => {
         const findCommentList = async () => {
             console.log("code: ", article.code)
             try {
@@ -79,14 +85,18 @@ const DetailsNews = ({ toggle }) => {
                     .then(data => {
                         setCommentList(data);
                         console.log("data: ", data);
-                        console.log("commentList", commentList.length);
+                        // console.log("commentList", commentList.length);
                     })
             } catch (error) {
                 console.log("Error fetching data", error);
             }
         };
+        // findCommentList();
+    // }, [article, commentList]);
+
+    useEffect(() => {
         findCommentList();
-    }, [article]);
+    }, [article])
 
 
     // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
@@ -124,6 +134,7 @@ const DetailsNews = ({ toggle }) => {
                             <p className="commentEmail">{comment.email.replace(/@.*/, '')}</p> {/* email값 @포함하여 뒤를 빈문자열로 대체 */}
                             <p className="commentDate">{comment.date}</p>
                             <p className="commentContent">{comment.content}</p>
+                            <button className="replyButton">답글{/*답글 카운트*/}</button>
                         </div>
                     ))}
                 </div>

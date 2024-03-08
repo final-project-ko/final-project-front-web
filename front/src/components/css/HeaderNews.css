@@ -188,6 +188,7 @@ a:hover {
 }
 
 .commentCount {
+    padding-left: 2px;
     background-color: #ffffff;
     text-decoration: none;
     /* 기본 링크 스타일 제거 */
