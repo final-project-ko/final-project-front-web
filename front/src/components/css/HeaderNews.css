@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
 * {
     font-family: "Noto Sans KR", sans-serif;
 }
@@ -28,7 +29,8 @@
     cursor: pointer;
     overflow: hidden;
 }
-.new1:hover{
+
+.new1:hover {
     border: 2px solid #008BDA;
 }
 
@@ -162,11 +164,81 @@
     /*active: #F7F9FB;*/
 }
 
-a:link, :visited{
+a:link,
+:visited {
     color: dodgerblue;
 
 }
 
 a:hover {
     color: #008BDA;
+}
+
+.newsCommentDiv {
+    /* background-color: #ffffff; */
+    position: relative;
+    top: 20%;
+    margin-right: 12.5%;
+    margin-left: 12.5%;
+}
+
+.commentHead {
+    border-top: 1px solid #ddd;
+    background-color: #ffffff;
+}
+
+.commentCount {
+    background-color: #ffffff;
+    text-decoration: none;
+    /* 기본 링크 스타일 제거 */
+    color: inherit;
+    /* 부모 엘리먼트의 색상 상속 */
+}
+
+.commentCount:hover {
+    text-decoration: none;
+    /* 호버 시 텍스트 밑줄 제거 */
+    color: inherit;
+    /* 호버 시 텍스트 색상 상속 */
+}
+
+.commentForm {
+    background-color: #ffffff;
+}
+
+.commentInput {
+    background-color: #ffffff;
+    width: 89%;
+    height: 2.2rem;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    margin-right: 2px;
+}
+
+.commentRegistButton {
+    width: 9%;
+    height: 2.4rem;
+    border: 1px solid #ddd;
+}
+
+.commentBox {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    /* margin-bottom: 10px; */
+}
+
+.commentEmail {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.commentDate {
+    font-size: 12px;
+    color: #999;
+}
+
+.commentContent {
+    font-size: 13px;
+    line-height: 19px;
 }

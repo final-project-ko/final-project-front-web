@@ -1,5 +1,5 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {useEffect, useState, useRef} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 import "../../components/css/DetailsNews.css"
 
 const DetailsNews = ({ toggle }) => {
@@ -9,8 +9,14 @@ const DetailsNews = ({ toggle }) => {
 
     const [linkText, setLinkText] = useState("");
     const [linkUrlText, setLinkUrlText] = useState("");
+    const [comment, setComment] = useState("");
+    const [commentList, setCommentList] = useState([]);
 
     const navigate = useNavigate();
+
+    /* localStorage 에서 userCode, userEmail 꺼내옴 */
+    const userCode = localStorage.getItem('userCode');
+    const userEmail = localStorage.getItem('userEmail');
 
     /* 토글(국내,해외)에 따라 링크 문구 수정 */
     useEffect(() => {
@@ -26,8 +32,62 @@ const DetailsNews = ({ toggle }) => {
     /* DetailsNews에서 추천뉴스 클릭 시 해당 뉴스 상세페이지로 이동 */
     const onClickHandler = (article) => {
 
-        navigate(`/detailNews/${article.code}`, {state : {article, articles}})
+        navigate(`/detailNews/${article.code}`, { state: { article, articles } })
     }
+
+    /* comment input 값 핸들러 */
+    const onInputChangeHandler = (e) => {
+        setComment(e.target.value);
+    }
+
+    /* spring 서버로 댓글 입력 값 전송 */
+    const registComment = async (e) => {
+        e.preventDefault();
+
+        try {
+            // 서버로 보낼 데이터
+
+            const response = await fetch(`http://localhost:8080/api/comments/regist`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    newsCode: article.code,
+                    email: userEmail,
+                    content: comment
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('서버 응답이 실패했습니다.');
+            }
+
+            console.log('comment submit success : ' + comment);
+        } catch (error) {
+            console.log('Error submit comment : ', error.message);
+        }
+    }
+
+    /* 뉴스 별 댓글 조회 */
+    useEffect(() => {
+        const findCommentList = async () => {
+            console.log("code: ", article.code)
+            try {
+                const promise = await fetch(`http://localhost:8080/api/comments/find/${article.code}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setCommentList(data);
+                        console.log("data: ", data);
+                        console.log("commentList", commentList.length);
+                    })
+            } catch (error) {
+                console.log("Error fetching data", error);
+            }
+        };
+        findCommentList();
+    }, [article]);
+
 
     // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
     const formattedDescription = article.description.replace(/다\.(?!$)/g, '다.\n\n');
@@ -38,12 +98,35 @@ const DetailsNews = ({ toggle }) => {
             <div className='selectedNewsDiv'>
                 {/*<div className="scroll-bar" ref={scrollBarIndicatorRef}></div>*/}
                 <span className='detailsNewsTitle'>{article.title}</span>
-                <img className='detailsNewsImg' src={article.image}/>
+                <img className='detailsNewsImg' src={article.image} />
                 <span className='detailsNewsDescription'>{formattedDescription}</span>
                 <span className='detailsNewsLinkText'>
                     {linkText}&nbsp;&nbsp;
                     <a className='detailsNewsLink' href={article.url} target='_blank'>{linkUrlText}</a>
                 </span>
+                <div className='newsCommentDiv'>
+                    <div className='commentHead'>
+                        <a className='commentCount'>{commentList.length}개의 댓글</a>
+                        <br />
+                        <form onSubmit={registComment} className="commentForm">
+                            <input
+                                className="commentInput"
+                                type="text"
+                                placeholder={userCode ? '여기에 댓글을 입력하세요' : '댓글을 작성하려면 로그인 해주세요'}
+                                value={comment}
+                                onChange={onInputChangeHandler}
+                            ></input>
+                            <button className="commentRegistButton" type="submit">등록</button>
+                        </form>
+                    </div>
+                    {commentList.map(comment => (
+                        <div key={comment.commentCode} className="commentBox">
+                            <p className="commentEmail">{comment.email.replace(/@.*/, '')}</p> {/* email값 @포함하여 뒤를 빈문자열로 대체 */}
+                            <p className="commentDate">{comment.date}</p>
+                            <p className="commentContent">{comment.content}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className='recommandNewsDiv'>
