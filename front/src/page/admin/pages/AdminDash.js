@@ -13,7 +13,7 @@ const AdminDash = () => {
             const promise = await fetch(`http://localhost:8080/api/news/categoryNews/${"kr_total"}`)
                 .then(response => response.json())
                 .then(data => {
-                  console.log(data);
+               //   console.log(data);
                     setArticles(data.articles);
                 })
         } catch (error) {
@@ -25,7 +25,7 @@ const AdminDash = () => {
         const promise = await fetch(`api/qna/findAllInquiry`)
             .then(response => response.json())
             .then(datas => {
-              console.log(datas);
+            //  console.log(datas);
                 setInquiry(datas.articles);
             })
     } catch (error) {

@@ -12,7 +12,7 @@ const AdminUser = () => {
         }).then(res => res.json())
           .then(data => {
               setArticles(data);
-              console.log(data);
+           //   console.log(data);
 
           })
             .catch(error =>{

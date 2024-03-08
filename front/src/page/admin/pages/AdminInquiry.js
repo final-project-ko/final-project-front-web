@@ -18,7 +18,7 @@ const AdminInquiry = () => {
         const promise = await fetch(`api/qna/findAllInquiry`)
           .then(response => response.json())
           .then(datas => {
-            console.log(datas);
+          //  console.log(datas);
             setArticles(datas.articles);
           })
       } catch (error) {
