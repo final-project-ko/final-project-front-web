@@ -6,7 +6,7 @@ const LoginHandler = (props) => {
 
     const navigate = useNavigate();
     const code = new URL(window.location.href).searchParams.get("code");
-    console.log(code);
+   // console.log(code);
 
 
 
@@ -16,8 +16,8 @@ const LoginHandler = (props) => {
                 method: "GET",
             }).then(res => res.json())
               .then(data => {
-                console.log(data);
-                  localStorage.setItem("todayId",data.accessToken);
+              //  console.log(data);
+                  localStorage.setItem("KtodayId",data.accessToken);
 
               })
                 .catch(error =>{

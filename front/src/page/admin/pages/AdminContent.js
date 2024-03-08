@@ -87,7 +87,7 @@ const AdminContent = () => {
             }
         };
         fetchCategoryNews();
-    }, [category]);
+    }, [category,adminContentModify]);
 
 
 

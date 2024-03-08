@@ -1,12 +1,50 @@
-
-.loginChoice{
-    position: absolute;
-    width: 20%;
-    top: 40%;
-    left: 40%;
+.loginPage {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 20%;
+  width: 40%;
+  height: 50%;
+  align-items: center;
+  left: 28%;
 }
 
-.kakaoLogin{
-    border: none;
+h1.mainPage {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
 
+.loginPage p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.loginChoice {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 20%;
+  height: 30%;
+  top: 40%;
+  align-items: center;
+  left: 40%;
+  background-color: white;
+}
+
+a.kakaoLogin {
+  border-radius: 10px;
+  position: absolute;
+  left: 13%;
+  top: 10%;
+}
+a.naverLogin {
+  border-radius: 10px;
+  position: absolute;
+  left: 13%;
+  top: 40%;
 }

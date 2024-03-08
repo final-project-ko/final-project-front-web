@@ -9,6 +9,7 @@ import AdminMain from "./page/admin/AdminMain";
 import Login from "./page/login/Login";
 import LoginHandler from "./page/login/LoginHandler";
 import useStore from './store';
+import NaverHandler from './page/login/NaverHandler';
 
 function App() {
     const [toggle, setToggle] = useState(true);
@@ -33,6 +34,7 @@ function App() {
               <Route path='/admin' element={<AdminMain/>}/>
           </Route>
         <Route path='/login/oauth' element={<LoginHandler/>}/>
+        <Route path='/naver/oauth' element={<NaverHandler/>}/>
         </Routes>
       </BrowserRouter>
     </>

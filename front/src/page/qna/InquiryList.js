@@ -22,7 +22,7 @@ const InquiryList = () => {
         const promise = await fetch(`api/qna/findInquiry/${userId}`)
           .then(response => response.json())
           .then(data => {
-            console.log(data);
+         //   console.log(data);
             setArticles(data);
           })
       } catch (error) {
