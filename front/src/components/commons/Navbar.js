@@ -55,7 +55,7 @@ const Navbar = ({ toggle, setToggle }) => {
               })
             });
             const data = await response.json();
-            //   console.log(data);
+             //  console.log(data);
             setUserInfo(data.id, data.userAuth, data.name, data.email);
             setLogin(true);
             //   console.log("userId :"+userId);
@@ -67,6 +67,8 @@ const Navbar = ({ toggle, setToggle }) => {
       } else {
         console.log("토큰 없음");
         setLogin(false);
+        window.localStorage.removeItem("KtodayId");
+        window.localStorage.removeItem("NtodayId");
       }
     };
 

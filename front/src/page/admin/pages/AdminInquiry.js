@@ -59,7 +59,7 @@ const AdminInquiry = () => {
       }),
     }).then(res => {
       if (res.ok) {
-        alert("수정 완료");
+        alert("등록 완료");
         setTitle("");
         setContent("");
       } else {
@@ -67,7 +67,28 @@ const AdminInquiry = () => {
       }
     })
   }
-
+  const deleteReply = async() =>{
+    await fetch(`api/qna/deleteReply`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        code: code,
+        title: title,
+        content: content,
+        userCode: userCode
+      }),
+    }).then(res => {
+      if (res.ok) {
+        alert("삭제 완료");
+        setTitle("");
+        setContent("");
+      } else {
+        alert("오류 발생 다시 시도 해 주세요");
+      }
+    })
+  }
 
 
   return (
@@ -100,7 +121,8 @@ const AdminInquiry = () => {
       </div>
 
 
-      <button className="adminNoticeDelete" onClick={insertReply} style={page? {display:"block"} : {display:"none"}}>등록</button>
+      <button className="adminNoticeDelete1" onClick={insertReply} style={page? {display:"block"} : {display:"none"}}>등록</button>
+      <button className="adminNoticeDelete" onClick={deleteReply} style={page? {display:"block"} : {display:"none"}}>삭제</button>
 
     </>
   )
