@@ -13,8 +13,8 @@ import NaverHandler from './page/login/NaverHandler';
 
 function App() {
     const [toggle, setToggle] = useState(true);
-    const { userId, auth, setUserInfo } = useStore();
-
+    const { userId, setUserInfo } = useStore();
+    const auth = localStorage.getItem("AUTH");
    
 
 
@@ -30,9 +30,9 @@ function App() {
               <Route path='/customer' element={<CustomerPage/>}/>
               <Route path='/mypage' element={<Mypage/>}/>
               <Route path='/login' element={<Login/>}/>
-              {auth !== "admin" && <Route path="/admin" element={<Navigate to="/" replace />} />}
-              <Route path='/admin' element={<AdminMain/>}/>
           </Route>
+          {auth !== "admin" && <Route path="/admin" element={<Navigate to="/" replace />} />}
+              <Route path='/admin' element={<AdminMain/>}/>
         <Route path='/login/oauth' element={<LoginHandler/>}/>
         <Route path='/naver/oauth' element={<NaverHandler/>}/>
         </Routes>

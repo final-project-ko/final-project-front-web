@@ -90,3 +90,31 @@
   font-size: 16px;
   font-weight: bold;
 }
+.color{
+  position: absolute;
+  left: 70%;
+  top: 40%;
+  font-size: 1.3rem;
+  background-color: white;
+}
+.naverColor{
+  width: 20%;
+  height: 25%;
+  position: absolute;
+  background-color: #04c75a;
+  left: -30%;
+  top: 8%;
+}
+.kakaoColor{
+  width: 20%;
+  height: 25%;
+  position: absolute;
+  background-color: #F7E600;
+  left: -30%;
+  top: 70%;
+}
+
+
+foreignObject{
+  background-color: white;
+}

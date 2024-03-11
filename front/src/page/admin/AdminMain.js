@@ -57,10 +57,7 @@ const AdminMain = () => {
   }
 
   const localHandler = () => {
-    window.localStorage.removeItem("userCode");
-    window.localStorage.removeItem("userName");
-    window.localStorage.removeItem("userEmail");
-    window.localStorage.removeItem("userAuth");
+    window.localStorage.removeItem("AUTH");
   }
 
   const nonChoice = {
@@ -93,7 +90,6 @@ const AdminMain = () => {
 
         <div className="adminNav">
           <ul className="adminUl">
-            <NavLink to={"/"} style={({ isActive }) => (isActive ? choice : nonChoice)}><li>사이트 바로가기</li></NavLink>
             <li
               onClick={(e) => { pageChangeHandler1(e); }}
               value="AdminDash"

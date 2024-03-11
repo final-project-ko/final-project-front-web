@@ -41,10 +41,60 @@ a.kakaoLogin {
   position: absolute;
   left: 13%;
   top: 10%;
+  width: 45%;
+
 }
 a.naverLogin {
   border-radius: 10px;
   position: absolute;
   left: 13%;
   top: 40%;
+  width: 45%;
+}
+
+.loginChoice2 {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 20%;
+  height: 30%;
+  top: 40%;
+  align-items: center;
+  left: 42%;
+  background-color: white;
+}
+
+.adminId{
+font-size: 1.4rem;
+margin-bottom: 10%;
+margin-top: 10%;
+background-color: white;
+border: none;
+border-bottom: 1px solid #8d8d8d;
+width: 80%;
+}
+.adminPass{
+font-size: 1.4rem;
+background-color: white;
+border: none;
+border-bottom: 1px solid #8d8d8d;
+margin-bottom: 10%;
+width: 80%;
+}
+
+input:focus{
+  outline: none;
+  border-bottom: 2px solid #008BDA;
+}
+.adminBtn{
+  width: 80%;
+  height: 15%;
+  border-radius: 20px;
+  background-color: #008BDA;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.adminBtn:hover{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
 }
