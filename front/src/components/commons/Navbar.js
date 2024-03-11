@@ -175,10 +175,7 @@ const Navbar = ({ toggle, setToggle }) => {
         <ul className="mypageNav">
           <li><NavLink to={"/customer"} style={{ textDecoration: "none", color: "black", backgroundColor: "white" }} userId={userId}>고객센터</NavLink></li>
           <li><NavLink to={"/mypage"} style={{ textDecoration: "none", color: "black", backgroundColor: "white" }} userId={userId}>마이페이지</NavLink></li>
-          <li><NavLink to={auth === "admin" ? "/admin" : "/"}
-            style={auth === "admin" ? barOn : barOff}>
-            어드민
-          </NavLink></li>
+
         </ul>
 
       </button>
