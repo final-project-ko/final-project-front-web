@@ -14,6 +14,10 @@ const DetailsNews = ({ toggle }) => {
     const [commentList, setCommentList] = useState([]);
     const [replyToggle, setReplyToggle] = useState([]);
     const [reply, setReply] = useState("");
+    const [replyCommentCode, setReplyCommentCode] = useState("");
+    const [findReply, setFindReply] = useState([]);
+    const [findReplyCount, setFindReplyCount] = useState({});
+    // const [replyInput, setReplyInput] = useState({});
 
     const navigate = useNavigate();
 
@@ -100,21 +104,63 @@ const DetailsNews = ({ toggle }) => {
         findCommentList();
     }, [article])
 
+    useEffect(() => {
+        findReplyList(replyCommentCode);
+    }, [replyToggle])
+
+    /* 댓글에 달린 답글 수 불러오는 함수 */
+    useEffect(() => {
+        // 컴포넌트가 마운트될 때 각 댓글에 대한 답글 갯수를 불러와서 설정
+        const loadReplyCounts = async () => {
+            const counts = {};  // 댓글 코드를 키로 사용하여 답글 갯수를 저장할 객체
+    
+            // 각 댓글 코드에 대한 답글 갯수를 불러오기
+            for (const comment of commentList) {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/reply/find/${comment.commentCode}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        counts[comment.commentCode] = data.replys.length;
+                    } else {
+                        counts[comment.commentCode] = 0;
+                    }
+                } catch (error) {
+                    console.error("Error fetching reply count", error);
+                    counts[comment.commentCode] = 0;
+                }
+            }
+    
+            // 불러온 답글 갯수를 상태에 설정
+            setFindReplyCount(counts);
+        };
+    
+        loadReplyCounts();  // 함수 호출
+    
+        // 여기서는 commentList를 의존성 배열에 추가하지 않습니다.
+        // 컴포넌트가 처음 렌더링될 때 한 번만 실행하면 되기 때문입니다.
+    }, [commentList, findReply]);  // 빈 배열을 의존성 배열로 전달하여 마운트될 때만 실행되도록 함
+
     /* 답글 토글 함수 */
     const toggleReply = (commentCode) => {
+        console.log('commentCode', commentCode);
+        setReplyCommentCode(commentCode);
         setReplyToggle((prevToggle) => ({
             ...prevToggle,
             [commentCode]: !prevToggle[commentCode]
-        }))
+        }));
+        findReplyList(commentCode);
+
     }
 
     /* 답글 등록 */
-    const onReplyInputChangeHandler = (e) => {
+    const onReplyInputChangeHandler = (e, commentCode) => {
         setReply(e.target.value);
+        setReplyCommentCode(commentCode);
     }
 
     const registReply = async (e) => {
         e.preventDefault();
+        console.log('asdfa : ', replyCommentCode);
 
         try {
             // 서버로 보낼 답글 데이터
@@ -124,22 +170,49 @@ const DetailsNews = ({ toggle }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    commentCode: comment.commentCode,
+                    commentCode: replyCommentCode,
                     userId: userId,
                     email: userEmail,
                     content: reply
                 })
             });
 
-            if (!response.ok) {
-                throw new Error('서버 응답이 실패했습니다.');
+            // if (!response.ok) {
+            //     throw new Error('서버 응답이 실패했습니다.');
+            // }
+
+            if (response.status === 404) {
+                alert('답글 내용이 없습니다. 다시 입력해주세요');
+            } else if (response.status === 403) {
+                alert('로그인이 필요합니다.');
+            } 
+            else {
+                console.log('reply submit success : ' + reply);
+                alert('답글이 등록되었습니다.');
+                setReply('');
+                findReplyList(replyCommentCode);
             }
-            console.log('reply submit success : ' + reply);
-            alert('답글이 등록되었습니다.');
-            setReply('');
-            // findReplyList();
+            
         } catch (error) {
             console.log('Error submit reply : ', error.message);
+        }
+    }
+
+    /* 댓글 별 답글 조회 */
+    const findReplyList = async (commentCode) => {
+        console.log('comment code: ', commentCode);
+        try {
+            const promise = await fetch(`http://localhost:8080/api/reply/find/${commentCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    setFindReply((prevReplies) => ({
+                        ...prevReplies,
+                        [commentCode]: data.replys
+                    }));
+                    console.log('findReply :', data)
+                })
+        } catch (error) {
+            console.log("Error fetching data", error);
         }
     }
 
@@ -178,18 +251,26 @@ const DetailsNews = ({ toggle }) => {
                             <p className="commentEmail">{comment.email.replace(/@.*/, '')}</p> {/* email값 @포함하여 뒤를 빈문자열로 대체 */}
                             <p className="commentDate">{comment.date}</p>
                             <p className="commentContent">{comment.content}</p>
-                            <button className="replyButton" onClick={() => toggleReply(comment.commentCode)}>답글{/*답글 카운트*/}</button>
+                            <button className="replyButton" onClick={() => toggleReply(comment.commentCode)}>답글{findReplyCount[comment.commentCode] || 0}</button>
                             {replyToggle[comment.commentCode] && (
                                 <div className="replyContainer">
-                                    <div className="replyList"></div>
+                                    <div className="replyList">
+                                    {(findReply[comment.commentCode] || []).map((reply, index) => (
+                                            <div className="findReplyList" key={index}>
+                                                <p className="replyEmail">{reply.email.replace(/@.*/, '')}</p>
+                                                <p className="replyDate">{reply.date}</p>
+                                                <p className="replyContent">{reply.content}</p>
+                                            </div>
+                                        ))}
+                                    </div>
                                     <div className="replyRegist">
                                         <form onSubmit={registReply} className="replyForm">
                                             <input
                                                 className="replyInput"
                                                 type="text"
-                                                placeholder={userCode ? '여기에 답글을 입력하세요' : '답글을 작성하려면 로그인 해주세요'}
+                                                placeholder={userCode ? '답글을 입력하세요' : '답글을 작성하려면 로그인 해주세요'}
                                                 value={reply}
-                                                onChange={onReplyInputChangeHandler}
+                                                onChange={(e) => onReplyInputChangeHandler(e, comment.commentCode)}
                                             ></input>
                                             <button className="replyRegistButton" type="submit">등록</button>
                                         </form>
