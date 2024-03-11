@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../../components/css/admin/AdminDash.css";
 import { useNavigate } from "react-router";
-import { Doughnut } from "react-chartjs-2";
 import ReactApexChart from "react-apexcharts";
 
 const AdminDash = () => {
