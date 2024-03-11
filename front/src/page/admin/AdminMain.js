@@ -8,6 +8,7 @@ import AdminContent from "./pages/AdminContent";
 import AdminNotice from "./pages/AdminNotice";
 import AdminNoticeList from "./pages/AdminNoticeList";
 import AdminInquiry from "./pages/AdminInquiry";
+import AdminReply from "./pages/AdminReply";
 const AdminMain = () => {
 
 
@@ -33,6 +34,7 @@ const AdminMain = () => {
   const pageChangeHandler6 = () => {
     setPage("AdminInquiry");
   }
+
 
 
   const getAdminComponent = () => {
@@ -134,13 +136,7 @@ const AdminMain = () => {
             >
               문의 답글 등록
             </li>
-            <li
-              onClick={(e) => { pageChangeHandler5(e); }}
-              value="AdminNotice"
-              style={page === "AdminNotice" ? choice : nonChoice}
-            >
-              댓글 관리
-            </li>
+
           </ul>
         </div>
         <div className="adminbackground">

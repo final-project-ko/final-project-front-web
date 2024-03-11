@@ -108,6 +108,19 @@ h2{
   background-color: #8d8d8d;
   font-size: 1.2rem;
 }
+.adminNoticeDelete1{
+  position: absolute;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  width: 10%;
+  height: 5%;
+  top: 80%;
+  left: 60%;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #8d8d8d;
+  font-size: 1.2rem;
+}
 .adminNoticeModify:hover{
   box-shadow: 0 3px 10px rgb(0 0 0 / 1);
   font-weight: bolder;
