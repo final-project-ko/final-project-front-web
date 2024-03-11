@@ -77,11 +77,13 @@ const Navbar = ({ toggle, setToggle }) => {
           setLogin(false);
           window.localStorage.removeItem("KtodayId");
           window.localStorage.removeItem("NtodayId");
+          setUserInfo("", "", "", "");
         }
       } else {
         setLogin(false);
         window.localStorage.removeItem("KtodayId");
         window.localStorage.removeItem("NtodayId");
+        setUserInfo("", "", "", "");
       }
     };
 
@@ -98,6 +100,7 @@ const Navbar = ({ toggle, setToggle }) => {
     if (loginBtn === "LogOut") {
       window.localStorage.removeItem("KtodayId");
       window.localStorage.removeItem("NtodayId");
+      setUserInfo("", "", "", "");
       setLogin(false);
     }
 

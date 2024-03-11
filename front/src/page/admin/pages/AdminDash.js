@@ -55,7 +55,7 @@ const AdminDash = () => {
         const promise = await fetch(`api/comments/allComments`)
           .then(response => response.json())
           .then(datas => {
-            console.log("datessssssss"+datas);
+            console.log(datas);
             setComments(datas);
           })
       } catch (error) {
@@ -121,9 +121,16 @@ const AdminDash = () => {
       </div>
 
 
-      <div className="comments">
+      <div className="comments" style={{overflow:"hidden"}}>
         <h2>최근 달린 댓글</h2>
-
+        <div className="adminNewsTitles" style={{overflow:"scroll"}}>
+        {comments.map((article, index) => (
+            <button className="adminNews2" id={`news${index + 1}`} key={index} onClick={onClickHandler}>
+              <div className="adminNewsText">{article.content}</div>
+              <div className="adminNewsText">{article.email}</div>
+            </button>
+          ))}
+          </div>
       </div>
 
 
