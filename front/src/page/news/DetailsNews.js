@@ -12,12 +12,14 @@ const DetailsNews = ({ toggle }) => {
     const [linkUrlText, setLinkUrlText] = useState("");
     const [comment, setComment] = useState("");
     const [commentList, setCommentList] = useState([]);
+    const [replyToggle, setReplyToggle] = useState([]);
+    const [reply, setReply] = useState("");
 
     const navigate = useNavigate();
 
     /* localStorage 에서 userCode, userEmail 꺼내옴 */
     // const userEmail = localStorage.getItem('userEmail');
-    const { userId, auth,userName,userEmail, setUserInfo } = useStore();
+    const { userId, auth, userName, userEmail, setUserInfo } = useStore();
     const userCode = userId;
 
     /* 토글(국내,해외)에 따라 링크 문구 수정 */
@@ -77,27 +79,69 @@ const DetailsNews = ({ toggle }) => {
 
     /* 뉴스 별 댓글 조회 */
     // useEffect(() => {
-        const findCommentList = async () => {
-            console.log("code: ", article.code)
-            try {
-                const promise = await fetch(`http://localhost:8080/api/comments/find/${article.code}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        setCommentList(data);
-                        console.log("data: ", data);
-                        // console.log("commentList", commentList.length);
-                    })
-            } catch (error) {
-                console.log("Error fetching data", error);
-            }
-        };
-        // findCommentList();
+    const findCommentList = async () => {
+        console.log("code: ", article.code)
+        try {
+            const promise = await fetch(`http://localhost:8080/api/comments/find/${article.code}`)
+                .then(response => response.json())
+                .then(data => {
+                    setCommentList(data);
+                    console.log("data: ", data);
+                    // console.log("commentList", commentList.length);
+                })
+        } catch (error) {
+            console.log("Error fetching data", error);
+        }
+    };
+    // findCommentList();
     // }, [article, commentList]);
 
     useEffect(() => {
         findCommentList();
     }, [article])
 
+    /* 답글 토글 함수 */
+    const toggleReply = (commentCode) => {
+        setReplyToggle((prevToggle) => ({
+            ...prevToggle,
+            [commentCode]: !prevToggle[commentCode]
+        }))
+    }
+
+    /* 답글 등록 */
+    const onReplyInputChangeHandler = (e) => {
+        setReply(e.target.value);
+    }
+
+    const registReply = async (e) => {
+        e.preventDefault();
+
+        try {
+            // 서버로 보낼 답글 데이터
+            const response = await fetch(`http://localhost:8080/api/reply/regist`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    commentCode: comment.commentCode,
+                    userId: userId,
+                    email: userEmail,
+                    content: reply
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('서버 응답이 실패했습니다.');
+            }
+            console.log('reply submit success : ' + reply);
+            alert('답글이 등록되었습니다.');
+            setReply('');
+            // findReplyList();
+        } catch (error) {
+            console.log('Error submit reply : ', error.message);
+        }
+    }
 
     // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
     const formattedDescription = article.description.replace(/다\.(?!$)/g, '다.\n\n');
@@ -134,7 +178,24 @@ const DetailsNews = ({ toggle }) => {
                             <p className="commentEmail">{comment.email.replace(/@.*/, '')}</p> {/* email값 @포함하여 뒤를 빈문자열로 대체 */}
                             <p className="commentDate">{comment.date}</p>
                             <p className="commentContent">{comment.content}</p>
-                            <button className="replyButton">답글{/*답글 카운트*/}</button>
+                            <button className="replyButton" onClick={() => toggleReply(comment.commentCode)}>답글{/*답글 카운트*/}</button>
+                            {replyToggle[comment.commentCode] && (
+                                <div className="replyContainer">
+                                    <div className="replyList"></div>
+                                    <div className="replyRegist">
+                                        <form onSubmit={registReply} className="replyForm">
+                                            <input
+                                                className="replyInput"
+                                                type="text"
+                                                placeholder={userCode ? '여기에 답글을 입력하세요' : '답글을 작성하려면 로그인 해주세요'}
+                                                value={reply}
+                                                onChange={onReplyInputChangeHandler}
+                                            ></input>
+                                            <button className="replyRegistButton" type="submit">등록</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
