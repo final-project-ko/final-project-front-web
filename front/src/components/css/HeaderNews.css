@@ -209,17 +209,26 @@ a:hover {
 
 .commentInput {
     background-color: #ffffff;
-    width: 89%;
+    width: 87%;
     height: 2.2rem;
     margin-top: 10px;
     border: 1px solid #ddd;
     margin-right: 2px;
+    padding-right: 9px;
+    border-radius: 5px;
 }
 
 .commentRegistButton {
+    background-color: #76c6f5;
     width: 9%;
     height: 2.4rem;
     border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.commentRegistButton:hover {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+    cursor: pointer;
 }
 
 .commentBox {
@@ -242,4 +251,64 @@ a:hover {
 .commentContent {
     font-size: 13px;
     line-height: 19px;
+}
+
+.findReplyList {
+    border-bottom: 1px solid #ddd;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.replyButton {
+    background-color: #fff;
+    border: none;
+}
+
+.replyEmail {
+    /* margin-left: 5%; */
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #F7F9FB;
+}
+
+.replyDate {
+    /* margin-left: 5%; */
+    font-size: 12px;
+    color: #999;
+    background-color: #F7F9FB;
+}
+
+.replyContent {
+    /* margin-left: 5%; */
+    font-size: 13px;
+    line-height: 19px;
+    background-color: #F7F9FB;
+}
+
+.replyRegist {
+    margin-left: 5%;
+}
+
+.replyInput {
+    background-color: #fff;
+    width: 83%;
+    height: 2.2rem;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    margin-right: 2px;
+    padding-left: 9px;
+    border-radius: 5px;
+}
+
+.replyRegistButton {
+    background-color: #76c6f5;
+    width: 9%;
+    height: 2.3rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.replyRegistButton:hover {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+    cursor: pointer;
 }
