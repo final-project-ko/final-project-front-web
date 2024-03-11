@@ -15,8 +15,9 @@ const Navbar = ({ toggle, setToggle }) => {
   const [showItem, setShowItem] = useState(false);
   const [navLinkPrefix, setNavLinkPrefix] = useState("kr_");
   const { userId, auth, userName, userEmail, setUserInfo } = useStore();
-
   const navigate = useNavigate();
+  const [localStorageChange, setLocalStorageChange] = useState(false);
+
 
   const onClickHanlder = () => {
     setToggle(!toggle);
@@ -26,13 +27,22 @@ const Navbar = ({ toggle, setToggle }) => {
 
   }
 
+  useEffect(()=>{
+    const handleStorage = () => {
+      setLocalStorageChange(prevState => !prevState);
+    };
+    window.addEventListener('storage',handleStorage);
+    return () => {
+      window.removeEventListener('storage',handleStorage);
+    }
+  },[])
+
   useEffect(() => {
     const kakaoAccessToken = localStorage.getItem("KtodayId");
     const NaverAccessToken = localStorage.getItem("NtodayId");
     const fetchData = async () => {
       if (kakaoAccessToken || NaverAccessToken) {
         if (tokenValid(kakaoAccessToken, NaverAccessToken)) {
-          console.log("토큰 있음");
           try {
             let endpoint = '';
             let accessToken = '';
@@ -63,9 +73,12 @@ const Navbar = ({ toggle, setToggle }) => {
             console.error(error);
             setLogin(false);
           }
+        }else {
+          setLogin(false);
+          window.localStorage.removeItem("KtodayId");
+          window.localStorage.removeItem("NtodayId");
         }
       } else {
-        console.log("토큰 없음");
         setLogin(false);
         window.localStorage.removeItem("KtodayId");
         window.localStorage.removeItem("NtodayId");
@@ -73,7 +86,7 @@ const Navbar = ({ toggle, setToggle }) => {
     };
 
     fetchData();
-  }, [tokenValid]); // accessToken을 의존성 배열에 추가
+  }, [tokenValid,localStorageChange]); // accessToken을 의존성 배열에 추가
 
   // 토글 시 국내,해외 페이지 이동
   useEffect(() => {
@@ -199,6 +212,11 @@ const tokenValid = async (kakaoAccessToken, NaverAccessToken) => {
       method: 'GET',
       headers: headers
     });
+    if (!response.ok) {
+      window.localStorage.removeItem("KtodayId");
+      window.localStorage.removeItem("NtodayId");
+      return false;
+    } 
 
     const data = await response.json();
     // 유효한 토큰인지 확인

@@ -34,9 +34,7 @@ const AdminMain = () => {
   const pageChangeHandler6 = () => {
     setPage("AdminInquiry");
   }
-  const pageChangeHandler7 = () => {
-    setPage("AdminReply");
-  }
+
 
 
   const getAdminComponent = () => {
@@ -53,8 +51,6 @@ const AdminMain = () => {
         return <AdminNotice />;
       case "AdminInquiry":
         return <AdminInquiry/>;
-      case "AdminReply":
-        return <AdminReply/>;
       default:
         return null;
     }
@@ -140,13 +136,7 @@ const AdminMain = () => {
             >
               문의 답글 등록
             </li>
-            <li
-              onClick={(e) => { pageChangeHandler7(e); }}
-              value="AdminReply"
-              style={page === "AdminReply" ? choice : nonChoice}
-            >
-              댓글 관리
-            </li>
+
           </ul>
         </div>
         <div className="adminbackground">
