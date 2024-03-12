@@ -52,7 +52,7 @@ const AdminDash = () => {
     }
     const allComments = async () => {
       try {
-        const promise = await fetch(`api/comments/allComments`)
+        const promise = await fetch(`api/comments/userComments`)
           .then(response => response.json())
           .then(datas => {
             console.log(datas);

@@ -55,6 +55,8 @@ const AdminUser = () => {
       </button>
     ))}
   </div>
+
+
   <div className="userInfoChange"></div>
   <button className="adminNoticeDelete">유저 탈퇴</button>
         </>

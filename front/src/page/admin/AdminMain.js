@@ -8,7 +8,7 @@ import AdminContent from "./pages/AdminContent";
 import AdminNotice from "./pages/AdminNotice";
 import AdminNoticeList from "./pages/AdminNoticeList";
 import AdminInquiry from "./pages/AdminInquiry";
-import AdminReply from "./pages/AdminReply";
+import AdminComment from "./pages/AdminComment";
 const AdminMain = () => {
 
 
@@ -34,6 +34,9 @@ const AdminMain = () => {
   const pageChangeHandler6 = () => {
     setPage("AdminInquiry");
   }
+  const pageChangeHandler7 = () => {
+    setPage("AdminComment");
+  }
 
 
 
@@ -51,6 +54,8 @@ const AdminMain = () => {
         return <AdminNotice />;
       case "AdminInquiry":
         return <AdminInquiry/>;
+        case "AdminComment":
+          return <AdminComment/>;
       default:
         return null;
     }
@@ -131,6 +136,13 @@ const AdminMain = () => {
               style={page === "AdminInquiry" ? choice : nonChoice}
             >
               문의 답글 등록
+            </li>
+            <li
+              onClick={(e) => { pageChangeHandler7(e); }}
+              value="AdminComment"
+              style={page === "AdminComment" ? choice : nonChoice}
+            >
+              댓글 관리
             </li>
 
           </ul>

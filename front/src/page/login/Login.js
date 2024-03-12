@@ -18,10 +18,9 @@ const Login = () => {
   const ADMIN_PASS = process.env.REACT_APP_ADMIN_PASS;
 
   const adminLogin = () => {
-    console.log(ADMIN_ID +""+ ADMIN_PASS);
     if(ADMIN_ID === id && ADMIN_PASS === pass){
       localStorage.setItem("AUTH", "admin");
-      navigate("/admin");
+        navigate("/admin");
     }/* else{
       navigate("/");
     } */
