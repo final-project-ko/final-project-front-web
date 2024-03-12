@@ -80,10 +80,10 @@ const AdminComment = () => {
         {comments.map((comment, index) => (
           <div className="comment" key={index}>
             <div className="commentHeader">
-              <span className="commentDate">{comment.date}</span>
-              <span className="commentEmail">{comment.email}</span>
+              <span className="adminCommentDate">{comment.date}</span>
+              <span className="adminCommentEmail">{comment.email}</span>
             </div>
-            <div className="commentContent">{comment.content}</div>
+            <div className="adminCommentContent">{comment.content}</div>
             <button onClick={()=>commentDelete(comment)} className="deleteButton">
               삭제
             </button>

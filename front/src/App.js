@@ -33,8 +33,8 @@ function App() {
           </Route>
           {auth !== "admin" && <Route path="/admin" element={<Navigate to="/" replace />} />}
               <Route path='/admin' element={<AdminMain/>}/>
-        <Route path='/login/oauth' element={<LoginHandler/>}/>
-        <Route path='/naver/oauth' element={<NaverHandler/>}/>
+        <Route path='/api/login/oauth' element={<LoginHandler/>}/>
+        <Route path='/api/naver/oauth' element={<NaverHandler/>}/>
         </Routes>
       </BrowserRouter>
     </>

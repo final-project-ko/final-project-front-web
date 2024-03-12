@@ -20,17 +20,17 @@
   background-color: #fff;
 }
 
-.commentDate {
+.adminCommentDate {
   font-weight: bold;
   background-color: #fff;
 }
 
-.commentEmail {
+.adminCommentEmail {
   color: #666;
   background-color: #fff;
 }
 
-.commentContent {
+.adminCommentContent {
   font-size: 20px;
   line-height: 1.6;
   background-color: #fff;

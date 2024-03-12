@@ -9,7 +9,7 @@ const NaverHandler = () => {
 
     useEffect(() => {
       const naverLogin = async () => {
-          await fetch(`/naver/oauth/?code=${code}`,{
+          await fetch(`/api/naver/oauth/?code=${code}`,{
               method: "GET",
           }).then(res => res.json())
             .then(data => {
