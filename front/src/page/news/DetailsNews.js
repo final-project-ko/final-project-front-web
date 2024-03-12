@@ -67,15 +67,25 @@ const DetailsNews = ({ toggle }) => {
                 })
             });
 
-            if (!response.ok) {
+            // if (!response.ok) {
+            //     throw new Error('서버 응답이 실패했습니다.');
+            // }
+
+            if (response.status === 401) {
+                alert('로그인이 필요합니다.');
+            } else if (response.status === 402) {
+                alert('댓글 내용이 없습니다. 다시 입력해주세요');
+            } else if (!response.ok) {
                 throw new Error('서버 응답이 실패했습니다.');
+            } else {
+                console.log('comment submit success : ' + comment);
+                alert('댓글이 등록되었습니다.');
+
+                setComment(''); // 댓글 등록후 input박스 값 초기화
+
+                findCommentList(); // 댓글 등록 후 댓글 다시 불러옴
             }
-            console.log('comment submit success : ' + comment);
-            alert('댓글이 등록되었습니다.');
-
-            setComment(''); // 댓글 등록후 input박스 값 초기화
-
-            findCommentList(); // 댓글 등록 후 댓글 다시 불러옴
+            
         } catch (error) {
             console.log('Error submit comment : ', error.message);
         }
@@ -181,12 +191,13 @@ const DetailsNews = ({ toggle }) => {
             //     throw new Error('서버 응답이 실패했습니다.');
             // }
 
-            if (response.status === 404) {
-                alert('답글 내용이 없습니다. 다시 입력해주세요');
-            } else if (response.status === 403) {
+            if (response.status === 401) {
                 alert('로그인이 필요합니다.');
-            } 
-            else {
+            } else if (response.status === 402) {
+                alert('답글 내용이 없습니다. 다시 입력해주세요');
+            } else if (!response.ok) {
+                throw new Error('서버 응답이 실패했습니다.');
+            } else {
                 console.log('reply submit success : ' + reply);
                 alert('답글이 등록되었습니다.');
                 setReply('');
