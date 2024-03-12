@@ -24,6 +24,7 @@ const DetailsNews = ({ toggle }) => {
     /* localStorage 에서 userCode, userEmail 꺼내옴 */
     // const userEmail = localStorage.getItem('userEmail');
     const { userId, auth, userName, userEmail, setUserInfo } = useStore();
+
     const userCode = userId;
 
     /* 토글(국내,해외)에 따라 링크 문구 수정 */
@@ -48,7 +49,7 @@ const DetailsNews = ({ toggle }) => {
         setComment(e.target.value);
     }
 
-    /* spring 서버로 댓글 입력 값 전송 */
+    /* 댓글 등록 */
     const registComment = async (e) => {
         e.preventDefault();
 
@@ -62,6 +63,7 @@ const DetailsNews = ({ toggle }) => {
                 },
                 body: JSON.stringify({
                     newsCode: article.code,
+                    userId : userCode,
                     email: userEmail,
                     content: comment
                 })
