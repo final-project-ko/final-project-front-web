@@ -22,9 +22,9 @@ const Login = ({setAuth}) => {
       localStorage.setItem("AUTH", "admin");
       setAuth("admin");
     }
-    if (localStorage.getItem("AUTH")) {
-      navigate("/admin");
-    }
+    
+    navigate("/admin");
+    
   }
 
 
