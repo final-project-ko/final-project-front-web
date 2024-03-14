@@ -48,10 +48,10 @@ const Navbar = ({ toggle, setToggle }) => {
             let accessToken = '';
 
             if (kakaoAccessToken) {
-              endpoint = '/login/kakao';
+              endpoint = '/api/login/kakao';
               accessToken = kakaoAccessToken;
             } else {
-              endpoint = '/naver/login';
+              endpoint = '/api/naver/login';
               accessToken = NaverAccessToken;
             }
 

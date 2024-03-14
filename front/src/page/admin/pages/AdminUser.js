@@ -5,6 +5,25 @@ const AdminUser = () => {
   const [articles, setArticles] = useState([]);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
   const [selectedArticle, setSelectedArticle] = useState(null);
+
+  const adminUserHandler = async () => {
+    await fetch("/api/user/deleteUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: selectedArticle.userId,
+      }),
+    }).then(res => {
+      if (res.ok) {
+        alert("삭제 완료");
+      } else {
+        alert("오류 발생 다시 시도 해 주세요");
+      }
+    })
+  }
+  
   useEffect(() => {
     const userInfo = async () => {
         await fetch(`/api/user/admin`,{
@@ -20,11 +39,11 @@ const AdminUser = () => {
             });
             //계속 쓸 정보들( ex: 이름) 등은 localStorage에 저장해두자
 /*                localStorage.setItem("name", res.data.account.name);*/
-            //로그인이 성공하면 이동할 페이지
+          
 
     };
     userInfo();
-},[]);
+},[adminUserHandler]);
 
   const userInfoHandler = (article,index) => {
     setSelectedArticle(article);
@@ -55,8 +74,10 @@ const AdminUser = () => {
       </button>
     ))}
   </div>
+
+
   <div className="userInfoChange"></div>
-  <button className="adminNoticeDelete">유저 탈퇴</button>
+  <button className="adminNoticeDelete" onClick={adminUserHandler}>유저 탈퇴</button>
         </>
     )
 

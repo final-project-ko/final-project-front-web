@@ -1,0 +1,85 @@
+.commentBoard {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.comment {
+  margin-bottom: 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 세로 가운데 정렬 추가 */
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.adminCommentDate {
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.adminCommentEmail {
+  color: #666;
+  background-color: #fff;
+}
+
+.adminCommentContent {
+  font-size: 20px;
+  line-height: 1.6;
+  background-color: #fff;
+}
+
+.deleteButton {
+  background-color: #008BDA;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  left: 95%;
+  position: relative;
+}
+
+.deleteButton:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.searchInput {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 300px; 
+  font-size: 16px;
+  outline: none;
+  margin-right: 10px; 
+}
+
+.searchButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: #0056b3;
+}
