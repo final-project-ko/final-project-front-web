@@ -160,13 +160,24 @@ const DetailsNews = ({ toggle }) => {
             ...prevToggle,
             [commentCode]: !prevToggle[commentCode]
         }));
+
+        // 댓글별로 답글 입력 상태를 초기화합니다.
+        setReply((prevInputs) => ({
+        ...prevInputs,
+        [commentCode]: ''
+        }));
+
         findReplyList(commentCode);
 
     }
 
     /* 답글 등록 */
     const onReplyInputChangeHandler = (e, commentCode) => {
-        setReply(e.target.value);
+        setReply((prevInputs) => ({
+            ...prevInputs,
+            [commentCode]: e.target.value
+        }));
+
         setReplyCommentCode(commentCode);
     }
 
@@ -185,7 +196,7 @@ const DetailsNews = ({ toggle }) => {
                     commentCode: replyCommentCode,
                     userId: userId,
                     email: userEmail,
-                    content: reply
+                    content: reply[replyCommentCode]
                 })
             });
 
@@ -232,6 +243,65 @@ const DetailsNews = ({ toggle }) => {
     // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
     const formattedDescription = article.description.replace(/다\.(?!$)/g, '다.\n\n');
 
+    /* 댓글 삭제 핸들러 */
+    const commentDeleteHandler = (commentCode) => {
+        // console.log(commentCode);
+        const deleteResponse = window.confirm("댓글을 삭제하시겠습니까?");
+
+        if (deleteResponse) {
+        // 사용자가 확인(예)을 선택한 경우 댓글 삭제
+        // api update status 수정하는 요청 
+        const deleteComment = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/comments/modifyComment/${parseInt(commentCode)}`
+                , {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                //     body: JSON.stringify({commentCode: commentCode})
+                });
+            } catch (error) {
+                console.log("Error fetching deleteComment", error);
+            }
+        }
+        deleteComment();
+
+        alert("댓글이 삭제되었습니다."); // 댓글 삭제가 성공한 경우 메시지 출력
+
+        // 위에있는 기사의 댓글 불러오는 api 한번 더 호출
+        findCommentList();
+
+        }
+    }
+
+    /* 댓글 신고 핸들러 */
+    const commentNotifyHandler = (commentCode) => {
+
+        const notifyResponse = window.confirm("댓글을 신고하시겠습니까?");
+
+        if (notifyResponse) {
+        // 사용자가 확인(예)을 선택한 경우 댓글 신고
+        // api update notify 수정하는 요청 
+        const notifyComment = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/comments/notifyComment/${parseInt(commentCode)}`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            } catch (error) {
+                console.log("Error fetching notifyComment", error);
+            }
+        }
+
+        notifyComment();
+
+        alert("신고 되었습니다.")
+        }
+    }
+
     /* 선택한 뉴스, 추천뉴스 반환 */
     return (
         <div className='detailsNewsDiv'>
@@ -261,10 +331,14 @@ const DetailsNews = ({ toggle }) => {
                     </div>
                     {commentList.map(comment => (
                         <div key={comment.commentCode} className="commentBox">
-                            <p className="commentEmail">{comment.email.replace(/@.*/, '')}</p> {/* email값 @포함하여 뒤를 빈문자열로 대체 */}
+                            {/* email값 @포함하여 뒤를 빈문자열로 대체 */}
+                            <p className="commentEmail">
+                                {comment.email.replace(/@.*/, '')}
+                                {comment.userId === userId ? <button className="commentDeleteButton" onClick={() => commentDeleteHandler(comment.commentCode)} style={{ display: comment.status === 'Y' ? 'inline-block' : 'none' }}>삭제</button> : <button className="commentNotifyButton" onClick={() => commentNotifyHandler(comment.commentCode)} style={{ display: comment.status === 'Y' ? 'inline-block' : 'none' }}>신고</button>}
+                            </p> 
                             <p className="commentDate">{comment.date}</p>
                             <p className="commentContent">{comment.content}</p>
-                            <button className="replyButton" onClick={() => toggleReply(comment.commentCode)}>답글{findReplyCount[comment.commentCode] || 0}</button>
+                            <button className="replyButton" onClick={() => toggleReply(comment.commentCode)} style={{ display: comment.status === 'Y' ? 'inline-block' : 'none' }}>답글{findReplyCount[comment.commentCode] || 0}</button>
                             {replyToggle[comment.commentCode] && (
                                 <div className="replyContainer">
                                     <div className="replyList">
@@ -282,7 +356,7 @@ const DetailsNews = ({ toggle }) => {
                                                 className="replyInput"
                                                 type="text"
                                                 placeholder={userCode ? '답글을 입력하세요' : '답글을 작성하려면 로그인 해주세요'}
-                                                value={reply}
+                                                value={reply[comment.commentCode] || ''}
                                                 onChange={(e) => onReplyInputChangeHandler(e, comment.commentCode)}
                                             ></input>
                                             <button className="replyRegistButton" type="submit">등록</button>
