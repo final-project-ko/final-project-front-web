@@ -31,8 +31,8 @@ function App() {
               <Route path='/mypage' element={<Mypage/>}/>
               <Route path='/login' element={<Login/>}/>
           </Route>
-          {auth !== "admin" && <Route path="/admin" element={<Navigate to="/" replace />} />}
-              <Route path='/admin' element={<AdminMain/>}/>
+          {localStorage.getItem("AUTH") === "admin" && <Route path="/admin"  element={<AdminMain/>} />}
+              <Route path='/admin' element={<Navigate to="/" replace />}/>
         <Route path='/api/login/oauth' element={<LoginHandler/>}/>
         <Route path='/api/naver/oauth' element={<NaverHandler/>}/>
         </Routes>
