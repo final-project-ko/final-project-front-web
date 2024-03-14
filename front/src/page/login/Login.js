@@ -4,7 +4,7 @@ import naver from "../../img/naver.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setAuth}) => {
   const [admin, setAdmin] = useState(false);
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
@@ -20,6 +20,7 @@ const Login = () => {
   const adminLogin = () => {
     if (ADMIN_ID === id && ADMIN_PASS === pass) {
       localStorage.setItem("AUTH", "admin");
+      setAuth("admin");
     }
     if (localStorage.getItem("AUTH")) {
       navigate("/admin");

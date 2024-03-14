@@ -1,5 +1,5 @@
 import "../../components/css/admin/AdminMain.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import AdminDash from "./pages/AdminDash";
@@ -11,7 +11,7 @@ import AdminInquiry from "./pages/AdminInquiry";
 import AdminComment from "./pages/AdminComment";
 const AdminMain = () => {
 
-
+  const navigate = useNavigate();
 
   const [page, setPage] = useState("AdminDash");
 
@@ -64,6 +64,9 @@ const AdminMain = () => {
   const localHandler = () => {
     window.localStorage.removeItem("AUTH");
   }
+  const goMain = () => {
+    navigate("/");
+  }
 
   const nonChoice = {
     background: 'transparent',
@@ -88,7 +91,7 @@ const AdminMain = () => {
 
 
         <div className="adminDiv">
-          <div className="adminMainText" style={{ backgroundColor: "white", color: "black" }}>www.today.co.kr</div>
+          <div className="adminMainText" style={{ backgroundColor: "white", color: "black",cursor:"pointer" }} onClick={goMain}>www.today.co.kr</div>
           <button className="adminLogOut" onClick={localHandler}><NavLink to={"/"} style={{ backgroundColor: "white", textDecoration: "none", color: "black" }}>로그아웃</NavLink></button>
 
         </div>

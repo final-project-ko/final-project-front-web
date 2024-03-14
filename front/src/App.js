@@ -14,7 +14,8 @@ import NaverHandler from './page/login/NaverHandler';
 function App() {
     const [toggle, setToggle] = useState(true);
     const { userId, setUserInfo } = useStore();
-    const auth = localStorage.getItem("AUTH");
+    const [auth,setAuth] = useState();
+
    
 
 
@@ -29,9 +30,9 @@ function App() {
               <Route path='/detailNews/:articleCode' element={<DetailsNews toggle={toggle}/>}/>
               <Route path='/customer' element={<CustomerPage/>}/>
               <Route path='/mypage' element={<Mypage/>}/>
-              <Route path='/login' element={<Login/>}/>
+              <Route path='/login' element={<Login setAuth={setAuth}/>}/>
           </Route>
-          {localStorage.getItem("AUTH") === "admin" && <Route path="/admin"  element={<AdminMain/>} />}
+          {auth === "admin" || localStorage.getItem("AUTH")==="admin" && <Route path="/admin"  element={<AdminMain/>} />}
               <Route path='/admin' element={<Navigate to="/" replace />}/>
         <Route path='/api/login/oauth' element={<LoginHandler/>}/>
         <Route path='/api/naver/oauth' element={<NaverHandler/>}/>
