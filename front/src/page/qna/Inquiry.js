@@ -12,7 +12,7 @@ const Inquiry = () => {
   const [newInquiry, setNewInquiry] = useState("");
 
 
-  const [title,setTitle] = useState("");
+  const [title, setTitle] = useState("");
 
 
 
@@ -58,30 +58,35 @@ const Inquiry = () => {
 
   // 문의사항을 서버에 제출하는 함수
   const submitInquiry = async () => {
-
-    try {
-      const response = await fetch("/api/qna/insertInquiry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-           title:title,
-           id:userId,
-           text: newInquiry 
+    if (title === null || title.length < 1) {
+      alert("제목을 입력 해주세요");
+    } else if (newInquiry === null || newInquiry.length < 10) {
+      alert("내용을 10자 이상 입력 해주세요");
+    } else {
+      try {
+        const response = await fetch("/api/qna/insertInquiry", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: title,
+            id: userId,
+            text: newInquiry
           }),
-      }).then(response => response.json())
-      .then(alert("등록 완료")).then(setTitle(""),setNewInquiry(""))
-      
-    } catch (error) {
-      alert("에러 발생")
+        }).then(response => response.json())
+          .then(alert("등록 완료")).then(setTitle(""), setNewInquiry(""))
+
+      } catch (error) {
+        alert("에러 발생")
+      }
     }
   };
 
   return (
     <div className="inquiry">
       <p className='title'>제목</p>
-        <input className='admintitle' type='text' value={title} onChange={e => setTitle(e.target.value)} />
+      <input className='admintitle' type='text' value={title} onChange={e => setTitle(e.target.value)} />
       <p>1:1 문의</p>
       <div className="inquiryForm" >
         <ReactQuill

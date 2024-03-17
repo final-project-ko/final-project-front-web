@@ -7,21 +7,26 @@ const AdminUser = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   const adminUserHandler = async () => {
-    await fetch("/api/user/deleteUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: selectedArticle.userId,
-      }),
-    }).then(res => {
-      if (res.ok) {
-        alert("삭제 완료");
-      } else {
-        alert("오류 발생 다시 시도 해 주세요");
-      }
-    })
+    if(selectedArticle===null){
+      alert("회원을 선택 해주세요");
+    }else{
+      await fetch("/api/user/deleteUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: selectedArticle.userId,
+        }),
+      }).then(res => {
+        if (res.ok) {
+          alert("삭제 완료");
+        } else {
+          alert("오류 발생 다시 시도 해 주세요");
+        }
+      })
+    }
+
   }
   
   useEffect(() => {
