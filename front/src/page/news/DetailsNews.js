@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import "../../components/css/DetailsNews.css"
 import useStore from "../../store";
+import { GoBookmark } from "react-icons/go";
+import { GoBookmarkFill } from "react-icons/go";
 
 const DetailsNews = ({ toggle }) => {
 
@@ -17,6 +19,7 @@ const DetailsNews = ({ toggle }) => {
     const [replyCommentCode, setReplyCommentCode] = useState("");
     const [findReply, setFindReply] = useState([]);
     const [findReplyCount, setFindReplyCount] = useState({});
+    const [bookmark, setBookmark] = useState({});
     // const [replyInput, setReplyInput] = useState({});
 
     const navigate = useNavigate();
@@ -63,7 +66,7 @@ const DetailsNews = ({ toggle }) => {
                 },
                 body: JSON.stringify({
                     newsCode: article.code,
-                    userId : userCode,
+                    userId: userCode,
                     email: userEmail,
                     content: comment
                 })
@@ -87,7 +90,7 @@ const DetailsNews = ({ toggle }) => {
 
                 findCommentList(); // 댓글 등록 후 댓글 다시 불러옴
             }
-            
+
         } catch (error) {
             console.log('Error submit comment : ', error.message);
         }
@@ -125,7 +128,7 @@ const DetailsNews = ({ toggle }) => {
         // 컴포넌트가 마운트될 때 각 댓글에 대한 답글 갯수를 불러와서 설정
         const loadReplyCounts = async () => {
             const counts = {};  // 댓글 코드를 키로 사용하여 답글 갯수를 저장할 객체
-    
+
             // 각 댓글 코드에 대한 답글 갯수를 불러오기
             for (const comment of commentList) {
                 try {
@@ -141,13 +144,13 @@ const DetailsNews = ({ toggle }) => {
                     counts[comment.commentCode] = 0;
                 }
             }
-    
+
             // 불러온 답글 갯수를 상태에 설정
             setFindReplyCount(counts);
         };
-    
+
         loadReplyCounts();  // 함수 호출
-    
+
         // 여기서는 commentList를 의존성 배열에 추가하지 않습니다.
         // 컴포넌트가 처음 렌더링될 때 한 번만 실행하면 되기 때문입니다.
     }, [commentList, findReply]);  // 빈 배열을 의존성 배열로 전달하여 마운트될 때만 실행되도록 함
@@ -163,8 +166,8 @@ const DetailsNews = ({ toggle }) => {
 
         // 댓글별로 답글 입력 상태를 초기화합니다.
         setReply((prevInputs) => ({
-        ...prevInputs,
-        [commentCode]: ''
+            ...prevInputs,
+            [commentCode]: ''
         }));
 
         findReplyList(commentCode);
@@ -216,7 +219,7 @@ const DetailsNews = ({ toggle }) => {
                 setReply('');
                 findReplyList(replyCommentCode);
             }
-            
+
         } catch (error) {
             console.log('Error submit reply : ', error.message);
         }
@@ -249,28 +252,28 @@ const DetailsNews = ({ toggle }) => {
         const deleteResponse = window.confirm("댓글을 삭제하시겠습니까?");
 
         if (deleteResponse) {
-        // 사용자가 확인(예)을 선택한 경우 댓글 삭제
-        // api update status 수정하는 요청 
-        const deleteComment = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/comments/modifyComment/${parseInt(commentCode)}`
-                , {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                //     body: JSON.stringify({commentCode: commentCode})
-                });
-            } catch (error) {
-                console.log("Error fetching deleteComment", error);
+            // 사용자가 확인(예)을 선택한 경우 댓글 삭제
+            // api update status 수정하는 요청 
+            const deleteComment = async () => {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/comments/modifyComment/${parseInt(commentCode)}`
+                        , {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            //     body: JSON.stringify({commentCode: commentCode})
+                        });
+                } catch (error) {
+                    console.log("Error fetching deleteComment", error);
+                }
             }
-        }
-        deleteComment();
+            deleteComment();
 
-        alert("댓글이 삭제되었습니다."); // 댓글 삭제가 성공한 경우 메시지 출력
+            alert("댓글이 삭제되었습니다."); // 댓글 삭제가 성공한 경우 메시지 출력
 
-        // 위에있는 기사의 댓글 불러오는 api 한번 더 호출
-        findCommentList();
+            // 위에있는 기사의 댓글 불러오는 api 한번 더 호출
+            findCommentList();
 
         }
     }
@@ -281,26 +284,136 @@ const DetailsNews = ({ toggle }) => {
         const notifyResponse = window.confirm("댓글을 신고하시겠습니까?");
 
         if (notifyResponse) {
-        // 사용자가 확인(예)을 선택한 경우 댓글 신고
-        // api update notify 수정하는 요청 
-        const notifyComment = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/comments/notifyComment/${parseInt(commentCode)}`, {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-            } catch (error) {
-                console.log("Error fetching notifyComment", error);
+            // 사용자가 확인(예)을 선택한 경우 댓글 신고
+            // api update notify 수정하는 요청 
+            const notifyComment = async () => {
+                try {
+                    const response = await fetch(`http://localhost:8080/api/comments/notifyComment/${parseInt(commentCode)}`, {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                } catch (error) {
+                    console.log("Error fetching notifyComment", error);
+                }
             }
-        }
 
-        notifyComment();
+            notifyComment();
 
-        alert("신고 되었습니다.")
+            alert("신고 되었습니다.")
         }
     }
+
+    /* 북마크 등록 핸들러 */
+    const bookmarkRegistHandler = () => {
+        if (userId) {
+            const bookmarkResigstResponse = window.confirm("해당 기사를 북마크에 등록하시겠습니까?");
+
+            if (bookmarkResigstResponse) {
+                registBookmark();
+            }
+        } else {
+            alert("북마크 등록은 로그인이 필요합니다.");
+        }
+    }
+
+    /* 북마크 삭제 핸들러 */
+    const bookmarkDeleteHandler = () => {
+        if (userId) {
+            const bookmarkDeleteResponse = window.confirm("해당 기사를 북마크에서 삭제하시겠습니까?");
+
+            if (bookmarkDeleteResponse) {
+                deleteBookmark();
+            }
+        }
+    }
+
+    /* 북마크 등록 api */
+    const registBookmark = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/bookmark/registBookmark`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    newsCode: article.code,
+                    newsTitle: article.title,
+                    newsDescription: article.description,
+                    newsUrl: article.url,
+                    newsImage: article.image,
+                    userId: userId
+                })
+            });
+            loadBookmark();
+        } catch (error) {
+            console.log("Error fetching registBookmark", error);
+        }
+        alert("북마크에 등록하였습니다.");
+    }
+
+    /* 북마크 삭제 api */
+    const deleteBookmark = async () => {
+        console.log("userId : ", userId);
+        console.log("bookmarkCode : ", bookmark.bookmarkCode);
+        try {
+            const response = await fetch(`http://localhost:8080/api/bookmark/deleteBookmark`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    bookmarkCode: bookmark.bookmarkCode
+                })
+            })
+            loadBookmark();
+        } catch (error) {
+            console.log("Error fetching deleteBookmark", error);
+        }
+        alert("북마크에서 삭제되었습니다.");
+    }
+
+    /* 북마크 조회 api */
+    const loadBookmark = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/bookmark/article`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    newsCode: article.code
+                })
+            });
+
+            if (!response.ok) {
+                if (response.status === 404) {
+                    console.log("북마크 없음");
+                } else if (response.status === 401) {
+                    console.log("로그인 정보 없음");
+                } else if (response.status === 500) {
+                    console.log("조회된 북마크 없음");
+                }
+                setBookmark({});
+                return; // 오류 처리 후 함수 종료
+            }
+
+            const data = await response.json();
+            setBookmark(data);
+            console.log('bookmark data : ', data);
+
+        } catch (error) {
+            console.log("Error fetching loadBookmark", error);
+        }
+    }
+
+    /* 기사가 바뀔 때 마다 북마크를 조회하는 로직 */
+    useEffect(() => {
+        loadBookmark();
+    }, [article]);
 
     /* 선택한 뉴스, 추천뉴스 반환 */
     return (
@@ -308,6 +421,12 @@ const DetailsNews = ({ toggle }) => {
             <div className='selectedNewsDiv'>
                 {/*<div className="scroll-bar" ref={scrollBarIndicatorRef}></div>*/}
                 <span className='detailsNewsTitle'>{article.title}</span>
+                <div className="bookmarkBtn">
+                    {article.code === bookmark.newsCode ?
+                        <GoBookmarkFill onClick={() => bookmarkDeleteHandler()} style={{ width: '2.2rem', height: '2.2rem', backgroundColor: '#fff', color: "#008BDA", cursor: "pointer" }} />
+                        :
+                        <GoBookmark onClick={() => bookmarkRegistHandler()} style={{ width: '2.2rem', height: '2.2rem', backgroundColor: '#fff', color: "#008BDA", cursor: "pointer" }} />}
+                </div>
                 <img className='detailsNewsImg' src={article.image} />
                 <span className='detailsNewsDescription'>{formattedDescription}</span>
                 <span className='detailsNewsLinkText'>
@@ -335,14 +454,14 @@ const DetailsNews = ({ toggle }) => {
                             <p className="commentEmail">
                                 {comment.email.replace(/@.*/, '')}
                                 {comment.userId === userId ? <button className="commentDeleteButton" onClick={() => commentDeleteHandler(comment.commentCode)} style={{ display: comment.status === 'Y' ? 'inline-block' : 'none' }}>삭제</button> : <button className="commentNotifyButton" onClick={() => commentNotifyHandler(comment.commentCode)} style={{ display: comment.status === 'Y' ? 'inline-block' : 'none' }}>신고</button>}
-                            </p> 
+                            </p>
                             <p className="commentDate">{comment.date}</p>
                             <p className="commentContent">{comment.content}</p>
                             <button className="replyButton" onClick={() => toggleReply(comment.commentCode)} style={{ display: comment.status === 'Y' ? 'inline-block' : 'none' }}>답글{findReplyCount[comment.commentCode] || 0}</button>
                             {replyToggle[comment.commentCode] && (
                                 <div className="replyContainer">
                                     <div className="replyList">
-                                    {(findReply[comment.commentCode] || []).map((reply, index) => (
+                                        {(findReply[comment.commentCode] || []).map((reply, index) => (
                                             <div className="findReplyList" key={index}>
                                                 <p className="replyEmail">{reply.email.replace(/@.*/, '')}</p>
                                                 <p className="replyDate">{reply.date}</p>

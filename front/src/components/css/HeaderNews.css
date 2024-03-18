@@ -322,3 +322,12 @@ a:hover {
     position: relative;
     left: 85%;
 }
+
+.bookmarkBtn {
+    background-color: #fff;
+    position: relative;
+    width: 0px;
+    height: 0px;
+    top: -6%;
+    left: 91%;
+}
