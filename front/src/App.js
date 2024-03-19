@@ -16,9 +16,6 @@ function App() {
     const { userId, setUserInfo } = useStore();
     const [auth,setAuth] = useState();
 
-   
-
-
 
   return (
     <>
