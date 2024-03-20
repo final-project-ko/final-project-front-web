@@ -28,7 +28,7 @@ const HeaderNews = () => {
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
-        const promise = await fetch(`http://localhost:8080/api/news/categoryNews/${category}`)
+        const promise = await fetch(`http://112.222.187.244:8085/api/news/categoryNews/${category}`)
           .then(response => response.json())
           .then(data => {
             setArticles(data.articles);
