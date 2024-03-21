@@ -8,8 +8,7 @@ const HeaderNews = () => {
   const [showSplash, setShowSplash] = useState(true); 
   const [splashClass, setSplashClass] = useState("splash-screen");
   const navigate = useNavigate(); // 이동
-  const { category: initialCategory } = useParams(); // 카테고리 가져오기
-  const [category, setCategory] = useState(initialCategory || "kr_total"); // 초기 카테고리 설정
+  const { category } = useParams(); // 카테고리 가져오기
   const [articles, setArticles] = useState([]);
 
 
@@ -28,7 +27,7 @@ const HeaderNews = () => {
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
-        const promise = await fetch(`http://112.222.187.244:8085/api/news/categoryNews/${category}`)
+        const promise = await fetch(`http://localhost:8080/api/news/categoryNews/${category}`)
           .then(response => response.json())
           .then(data => {
             setArticles(data.articles);

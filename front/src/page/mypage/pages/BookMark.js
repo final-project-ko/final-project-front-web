@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import {useNavigate} from "react-router-dom";
+import { useStore } from "zustand";
 
 const BookMark = () => {
 
@@ -7,6 +9,15 @@ const BookMark = () => {
 
         navigate("/detailNews")
     }
+    const [userId] = useStore();
+
+    useEffect(()=>{
+      const userBookMark = async() => {
+          const promise = await fetch(`/api/bookmark/userBookMark/${userId}`)
+      }
+    },[])
+
+
     return (
         <>
             <h3 className="myPageText">  북마크 목록</h3>
