@@ -281,27 +281,32 @@ const DetailsNews = ({ toggle }) => {
     /* 댓글 신고 핸들러 */
     const commentNotifyHandler = (commentCode) => {
 
-        const notifyResponse = window.confirm("댓글을 신고하시겠습니까?");
+        if (!userId) {
+            alert("로그인이 필요합니다.")
+        } else {
 
-        if (notifyResponse) {
-            // 사용자가 확인(예)을 선택한 경우 댓글 신고
-            // api update notify 수정하는 요청 
-            const notifyComment = async () => {
-                try {
-                    const response = await fetch(`http://localhost:8080/api/comments/notifyComment/${parseInt(commentCode)}`, {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                } catch (error) {
-                    console.log("Error fetching notifyComment", error);
+            const notifyResponse = window.confirm("댓글을 신고하시겠습니까?");
+
+            if (notifyResponse) {
+                // 사용자가 확인(예)을 선택한 경우 댓글 신고
+                // api update notify 수정하는 요청 
+                const notifyComment = async () => {
+                    try {
+                        const response = await fetch(`http://localhost:8080/api/comments/notifyComment/${parseInt(commentCode)}`, {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                    } catch (error) {
+                        console.log("Error fetching notifyComment", error);
+                    }
                 }
+
+                notifyComment();
+
+                alert("신고 되었습니다.")
             }
-
-            notifyComment();
-
-            alert("신고 되었습니다.")
         }
     }
 
