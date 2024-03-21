@@ -14,6 +14,9 @@ const LoginHandler = (props) => {
         const kakaoLogin = async () => {
             await fetch(`https://www.oheveryday.shop/api/login/oauth/?code=${code}&name=web`,{
                 method: "GET",
+                headers: {
+                  'Content-Type': 'application/json',
+                },
             }).then(res => res.json())
               .then(data => {
               //  console.log(data);
