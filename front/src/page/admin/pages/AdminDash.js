@@ -16,7 +16,7 @@ const AdminDash = () => {
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
-        const promise = await fetch(`http://localhost:8080/api/news/categoryNews/${"kr_total"}`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/news/categoryNews/${"kr_total"}`)
           .then(response => response.json())
           .then(data => {
             //   console.log(data);
@@ -28,7 +28,7 @@ const AdminDash = () => {
     };
     const fetchAllInquiry = async () => {
       try {
-        const promise = await fetch(`api/qna/findAllInquiry`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/qna/findAllInquiry`)
           .then(response => response.json())
           .then(datas => {
             //  console.log(datas);
@@ -40,7 +40,7 @@ const AdminDash = () => {
     }
     const allUsers = async () => {
       try {
-        const promise = await fetch(`api/user/allUsers`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/user/allUsers`)
           .then(response => response.json())
           .then(datas => {
             setKakao(datas.kakao);
@@ -52,7 +52,7 @@ const AdminDash = () => {
     }
     const allComments = async () => {
       try {
-        const promise = await fetch(`api/comments/userComments`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/comments/userComments`)
           .then(response => response.json())
           .then(datas => {
             console.log(datas);

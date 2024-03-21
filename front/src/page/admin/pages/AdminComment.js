@@ -8,7 +8,7 @@ const AdminComment = () => {
   useEffect(() => {
     const userComments = async () => {
       try {
-        const promise = await fetch(`api/comments/allComments`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/comments/allComments`)
           .then(response => response.json())
           .then(datas => {
             setComments(datas);
@@ -23,13 +23,13 @@ const AdminComment = () => {
   const findUserHandler = async () => {
     try {
       if (searchUser.length < 1) {
-        const promise = await fetch(`api/comments/allComments`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/comments/allComments`)
           .then(response => response.json())
           .then(datas => {
             setComments(datas);
           })
       } else {
-        const promise = await fetch(`/api/comments/findUser/${searchUser}`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/comments/findUser/${searchUser}`)
           .then(response => response.json())
           .then(data => {
             setComments(data);
@@ -41,7 +41,7 @@ const AdminComment = () => {
   }
 
   const commentDelete = async (comment) => {
-    await fetch(`api/comments/deleteComments`, {
+    await fetch(`https://www.oheveryday.shop/api/comments/deleteComments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const AdminComment = () => {
 
   const findNotify = async () => {
     try {
-      const promise = await fetch(`api/comments/adminNotify`)
+      const promise = await fetch(`https://www.oheveryday.shop/api/comments/adminNotify`)
         .then(response => response.json())
         .then(datas => {
           setComments(datas);

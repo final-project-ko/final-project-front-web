@@ -27,7 +27,7 @@ const HeaderNews = () => {
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
-        const promise = await fetch(`https://www.oheveryday.shop/api/news/categoryNews/${category}`, {
+        const promise = await fetch(`/api/news/categoryNews/${category}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

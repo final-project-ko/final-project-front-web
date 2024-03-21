@@ -30,7 +30,7 @@ const AdminContent = () => {
     }
 
     const adminContentModify = async () => {
-        await fetch(`/api/news/modifyNews`,{
+        await fetch(`https://www.oheveryday.shop/api/news/modifyNews`,{
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const AdminContent = () => {
         })
     }
     const adminContentDelete = async () => {
-        await fetch(`/api/news/deleteNews`,{
+        await fetch(`https://www.oheveryday.shop/api/news/deleteNews`,{
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const AdminContent = () => {
     useEffect(() => {
         const fetchCategoryNews = async () => {
             try {
-                const promise = await fetch(`http://localhost:8080/api/news/categoryNews/${category}`)
+                const promise = await fetch(`https://www.oheveryday.shop/api/news/categoryNews/${category}`)
                     .then(response => response.json())
                     .then(data => {
                         setArticles(data.articles);
