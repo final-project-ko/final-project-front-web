@@ -19,9 +19,12 @@ const InquiryList = () => {
 
   
       try {
-        const promise = await fetch(`https://www.oheveryday.shopapi/qna/findInquiry/${userId}`)
-          const response = await promise.json();
-          setArticles(response);
+        const promise = await fetch(`https://www.oheveryday.shop/api/qna/findInquiry/${userId}`)
+          .then(response => response.json())
+          .then(data => {
+         //   console.log(data);
+            setArticles(data);
+          })
       } catch (error) {
         console.log("Error fetching data", error);
       }
