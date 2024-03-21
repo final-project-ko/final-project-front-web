@@ -1,0 +1,25 @@
+/* 2024-03-19 스플래시(로딩)화면 css 추가 */
+
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+.fade-out {
+  animation: fadeOut 0.05s ease forwards;
+}
+
+.splash-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: fadeOut 1s ease forwards; /* 애니메이션 적용 */
+}
+
