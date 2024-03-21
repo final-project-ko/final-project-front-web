@@ -23,7 +23,7 @@ const Mypage = () => {
     const getMypageComponent = () => {
         switch (page) {
             case "BookMark":
-                return <BookMark />;
+                return <BookMark userId={userId}/>;
             case "Conditions":
                 return <Conditions />;
             case "UserInfo":

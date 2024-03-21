@@ -15,7 +15,7 @@
 
 .myPageDiv {
     background-color: #F7F9FB;
-    width: 55%;
+    width: 60%;
     position: absolute;
     height: 65%;
     align-items: center;
@@ -25,6 +25,7 @@
     align-content: stretch;
     display: flex;
     flex-wrap: wrap;
+    overflow: scroll;
 }
 .news {
     background-color: white;
@@ -169,4 +170,17 @@
 }
 .userInfoAll button:hover{
   background-color: #737373;
+}
+.emptyBookmarkMessage {
+  text-align: center;
+  padding: 20px;
+
+  border: none;
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+.emptyBookmarkMessage p {
+  font-size: 18px;
+  color: #333;
 }
