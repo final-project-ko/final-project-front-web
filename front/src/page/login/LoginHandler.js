@@ -12,7 +12,7 @@ const LoginHandler = (props) => {
 
     useEffect(() => {
         const kakaoLogin = async () => {
-            await fetch(`/api/login/oauth/?code=${code}&name=web`,{
+            await fetch(`https://www.oheveryday.shop/api/login/oauth/?code=${code}&name=web`,{
                 method: "GET",
             }).then(res => res.json())
               .then(data => {
