@@ -64,7 +64,7 @@ const Inquiry = () => {
       alert("내용을 10자 이상 입력 해주세요");
     } else {
       try {
-        const response = await fetch("/api/qna/insertInquiry", {
+        const response = await fetch("https://www.oheveryday.shop/api/qna/insertInquiry", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

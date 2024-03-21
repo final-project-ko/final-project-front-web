@@ -17,7 +17,7 @@ const BookMark = ({ userId }) => {
   useEffect(() => {
     const userBookMark = async () => {
       try {
-        const promise = await fetch(`/api/bookmark/userBookMark/${userId}`);
+        const promise = await fetch(`https://www.oheveryday.shop/api/bookmark/userBookMark/${userId}`);
         const news = await promise.json();
         if (news && news.length > 0) {
           setArticles(news);

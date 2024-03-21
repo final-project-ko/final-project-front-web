@@ -45,7 +45,7 @@ const InquiryList = () => {
     const articleCode = article.inquiryCode; // 현재 article의 inquiryCode 저장
     setCode(articleCode);
   
-    await fetch("/api/qna/deleteInquiry", {
+    await fetch("https://www.oheveryday.shop/api/qna/deleteInquiry", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

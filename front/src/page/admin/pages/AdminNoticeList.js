@@ -11,7 +11,7 @@ const AdminNoticeList = () => {
 
   useEffect(() => {
     const noticeList = async () => {
-      await fetch(`/api/notice/allNotice`, {
+      await fetch(`https://www.oheveryday.shop/api/notice/allNotice`, {
         method: "GET",
       }).then(res => res.json())
         .then(data => {
@@ -42,7 +42,7 @@ const AdminNoticeList = () => {
   }
 
   const noticeModify = async () => {
-    await fetch("/api/notice/modifyNotice", {
+    await fetch("https://www.oheveryday.shop/api/notice/modifyNotice", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const AdminNoticeList = () => {
     })
   }
   const noticeDelete = async () => {
-    await fetch("/api/notice/deleteNotice", {
+    await fetch("https://www.oheveryday.shop/api/notice/deleteNotice", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -58,7 +58,7 @@ const AdminNotice = () => {
     setTitle(e.currentTarget.value);
   }
   const insertHandler = async () => {
-    await fetch("/api/notice/insertNotice", {
+    await fetch("https://www.oheveryday.shop/api/notice/insertNotice", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

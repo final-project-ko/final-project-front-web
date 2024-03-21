@@ -10,7 +10,7 @@ const AdminUser = () => {
     if(selectedArticle===null){
       alert("회원을 선택 해주세요");
     }else{
-      await fetch("/api/user/deleteUser", {
+      await fetch("https://www.oheveryday.shop/api/user/deleteUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const AdminUser = () => {
   
   useEffect(() => {
     const userInfo = async () => {
-        await fetch(`/api/user/admin`,{
+        await fetch(`https://www.oheveryday.shop/api/user/admin`,{
             method: "GET",
         }).then(res => res.json())
           .then(data => {

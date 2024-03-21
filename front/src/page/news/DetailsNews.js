@@ -59,7 +59,7 @@ const DetailsNews = ({ toggle }) => {
         try {
             // 서버로 보낼 데이터
 
-            const response = await fetch(`/api/comments/regist`, {
+            const response = await fetch(`https://www.oheveryday.shop/api/comments/regist`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ const DetailsNews = ({ toggle }) => {
     const findCommentList = async () => {
         console.log("code: ", article.code)
         try {
-            const promise = await fetch(`/api/comments/find/${article.code}`)
+            const promise = await fetch(`https://www.oheveryday.shop/api/comments/find/${article.code}`)
                 .then(response => response.json())
                 .then(data => {
                     setCommentList(data);
@@ -132,7 +132,7 @@ const DetailsNews = ({ toggle }) => {
             // 각 댓글 코드에 대한 답글 갯수를 불러오기
             for (const comment of commentList) {
                 try {
-                    const response = await fetch(`/api/reply/find/${comment.commentCode}`);
+                    const response = await fetch(`https://www.oheveryday.shop/api/reply/find/${comment.commentCode}`);
                     if (response.ok) {
                         const data = await response.json();
                         counts[comment.commentCode] = data.replys.length;
@@ -190,7 +190,7 @@ const DetailsNews = ({ toggle }) => {
 
         try {
             // 서버로 보낼 답글 데이터
-            const response = await fetch(`/api/reply/regist`, {
+            const response = await fetch(`https://www.oheveryday.shop/api/reply/regist`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -229,7 +229,7 @@ const DetailsNews = ({ toggle }) => {
     const findReplyList = async (commentCode) => {
         console.log('comment code: ', commentCode);
         try {
-            const promise = await fetch(`/api/reply/find/${commentCode}`)
+            const promise = await fetch(`https://www.oheveryday.shop/api/reply/find/${commentCode}`)
                 .then(response => response.json())
                 .then(data => {
                     setFindReply((prevReplies) => ({
@@ -256,7 +256,7 @@ const DetailsNews = ({ toggle }) => {
             // api update status 수정하는 요청 
             const deleteComment = async () => {
                 try {
-                    const response = await fetch(`/api/comments/modifyComment/${parseInt(commentCode)}`
+                    const response = await fetch(`https://www.oheveryday.shop/api/comments/modifyComment/${parseInt(commentCode)}`
                         , {
                             method: "POST",
                             headers: {
@@ -292,7 +292,7 @@ const DetailsNews = ({ toggle }) => {
                 // api update notify 수정하는 요청 
                 const notifyComment = async () => {
                     try {
-                        const response = await fetch(`/api/comments/notifyComment/${parseInt(commentCode)}`, {
+                        const response = await fetch(`https://www.oheveryday.shop/api/comments/notifyComment/${parseInt(commentCode)}`, {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json'
@@ -337,7 +337,7 @@ const DetailsNews = ({ toggle }) => {
     /* 북마크 등록 api */
     const registBookmark = async () => {
         try {
-            const response = await fetch(`/api/bookmark/registBookmark`, {
+            const response = await fetch(`https://www.oheveryday.shop/api/bookmark/registBookmark`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -363,7 +363,7 @@ const DetailsNews = ({ toggle }) => {
         console.log("userId : ", userId);
         console.log("bookmarkCode : ", bookmark.bookmarkCode);
         try {
-            const response = await fetch(`/api/bookmark/deleteBookmark`, {
+            const response = await fetch(`https://www.oheveryday.shop/api/bookmark/deleteBookmark`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -383,7 +383,7 @@ const DetailsNews = ({ toggle }) => {
     /* 북마크 조회 api */
     const loadBookmark = async () => {
         try {
-            const response = await fetch(`/api/bookmark/article`, {
+            const response = await fetch(`https://www.oheveryday.shop/api/bookmark/article`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

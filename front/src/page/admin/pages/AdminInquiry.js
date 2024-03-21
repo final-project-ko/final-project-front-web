@@ -15,7 +15,7 @@ const AdminInquiry = () => {
   useEffect(() => {
     const fetchAllInquiry = async () => {
       try {
-        const promise = await fetch(`api/qna/findAllInquiry`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/qna/findAllInquiry`)
           .then(response => response.json())
           .then(datas => {
           //  console.log(datas);
@@ -45,7 +45,7 @@ const AdminInquiry = () => {
   }
 
   const insertReply = async () => {
-    await fetch(`api/qna/insertReply`, {
+    await fetch(`https://www.oheveryday.shop/api/qna/insertReply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const AdminInquiry = () => {
     })
   }
   const deleteReply = async() =>{
-    await fetch(`api/qna/deleteReply`, {
+    await fetch(`https://www.oheveryday.shop/api/qna/deleteReply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

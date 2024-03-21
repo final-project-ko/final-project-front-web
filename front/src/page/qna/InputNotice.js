@@ -10,7 +10,7 @@ const InputNotice = ({inputText}) => {
   const [visibleContentIndex, setVisibleContentIndex] = useState(-1);
   useEffect(() => {
     const noticeList = async () => {
-      await fetch(`/api/notice/searchNotice/${inputText}`, {
+      await fetch(`https://www.oheveryday.shop/api/notice/searchNotice/${inputText}`, {
         method: "GET",
       }).then(res => res.json())
         .then(data => {

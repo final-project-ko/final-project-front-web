@@ -8,7 +8,7 @@ const Notice = () => {
   const [visibleContentIndex, setVisibleContentIndex] = useState(-1);
   useEffect(() => {
     const noticeList = async () => {
-      await fetch(`/api/notice/allNotice`, {
+      await fetch(`https://www.oheveryday.shop/api/notice/allNotice`, {
         method: "GET",
       }).then(res => res.json())
         .then(data => {
