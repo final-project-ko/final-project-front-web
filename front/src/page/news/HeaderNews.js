@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import "../../components/css/Splash.css"; // 2024-03-19 스플래시(로딩)화면 css 추가
 
 const HeaderNews = () => {
-  const [showSplash, setShowSplash] = useState(true); 
+  const [showSplash, setShowSplash] = useState(true);
   const [splashClass, setSplashClass] = useState("splash-screen");
   const navigate = useNavigate(); // 이동
   const { category } = useParams(); // 카테고리 가져오기
@@ -16,10 +16,10 @@ const HeaderNews = () => {
     const timer = setTimeout(() => {
       setSplashClass("splash-screen fade-out"); // fade-in 애니메이션 적용
       setTimeout(() => {
-        setShowSplash(false); 
-      }, 700); 
-    }, 300); 
-  
+        setShowSplash(false);
+      }, 700);
+    }, 300);
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -27,7 +27,12 @@ const HeaderNews = () => {
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
-        const promise = await fetch(`https://www.oheveryday.shop/api/news/categoryNews/${category}`)
+        const promise = await fetch(`https://www.oheveryday.shop/api/news/categoryNews/${category}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
           .then(response => response.json())
           .then(data => {
             setArticles(data.articles);
@@ -42,14 +47,14 @@ const HeaderNews = () => {
 
   if (showSplash) {
     return (
-        <div style={{ 
-          backgroundColor: '#f7f9fb', 
-          width: '100vw', 
-          height: '100vh', 
-          position: 'fixed', // or 'absolute'
-          top: 0, 
-          left: 0 
-        }}>
+      <div style={{
+        backgroundColor: '#f7f9fb',
+        width: '100vw',
+        height: '100vh',
+        position: 'fixed', // or 'absolute'
+        top: 0,
+        left: 0
+      }}>
         <div className={splashClass} >
           <img src="cup-lite.gif" alt="loading..." style={{ height: '10vh' }}></img>
         </div>
