@@ -51,8 +51,7 @@ const Mypage = () => {
                         <FaRegUserCircle size="150" color="#7CF2FF" style={{backgroundColor:"white"}}/>
                     </div>
                     <div className="userName">
-                        <h2 style={{backgroundColor:"white"}}>{userName} 님</h2>
-                        <h3 style={{backgroundColor:"white"}}>{userEmail}</h3>
+                        <h3 style={{backgroundColor:"white"}}>{userEmail} 님</h3>
                     </div>
                     <ul className="userUl">
                         <li

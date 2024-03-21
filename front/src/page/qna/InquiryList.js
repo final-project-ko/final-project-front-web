@@ -19,12 +19,9 @@ const InquiryList = () => {
 
   
       try {
-        const promise = await fetch(`api/qna/findInquiry/${userId}`)
-          .then(response => response.json())
-          .then(data => {
-         //   console.log(data);
-            setArticles(data);
-          })
+        const promise = await fetch(`https://www.oheveryday.shopapi/qna/findInquiry/${userId}`)
+          const response = await promise.json();
+          setArticles(response);
       } catch (error) {
         console.log("Error fetching data", error);
       }

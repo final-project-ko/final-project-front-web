@@ -68,9 +68,6 @@ const AdminUser = () => {
             onClick={() => userInfoHandler(article, index)}
       >
         <div className="userText">
-          <strong>이름:</strong> {article.userName}
-        </div>
-        <div className="userText">
           <strong>이메일:</strong> {article.userEmail}
         </div>
         <div className="userText">

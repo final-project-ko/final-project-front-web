@@ -157,7 +157,6 @@ const Navbar = ({ toggle, setToggle }) => {
           <li><NavLink to={`${navLinkPrefix}science`} className='science' style={({ isActive }) => (isActive ? choice : nonChoice)}>과학</NavLink></li>
           <li><NavLink to={`${navLinkPrefix}sports`} className='sports' style={({ isActive }) => (isActive ? choice : nonChoice)}>스포츠</NavLink></li>
           <li><NavLink to={`${navLinkPrefix}health`} className='health' style={({ isActive }) => (isActive ? choice : nonChoice)}>건강</NavLink></li>
-          <li><NavLink to={`${navLinkPrefix}general `} className='Art' style={({ isActive }) => (isActive ? choice : nonChoice)}>일반</NavLink></li>
         </ul>
 
         {/*로그인 만들때 사용할 div*/}
