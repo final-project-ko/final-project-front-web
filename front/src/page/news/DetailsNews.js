@@ -244,7 +244,7 @@ const DetailsNews = ({ toggle }) => {
     }
 
     // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
-    const formattedDescription = article.description.replace(/다\.\n(?!$)/g, '다.\n\n');
+    const formattedDescription = article.description === null ? "AI 요약 준비중 입니다." : article.description.replace(/다\.\n(?!$)/g, '다.\n\n');
 
     /* 댓글 삭제 핸들러 */
     const commentDeleteHandler = (commentCode) => {
