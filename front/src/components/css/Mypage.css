@@ -54,6 +54,7 @@
 .userUl{
     position: absolute;
     top: 65%;
+    background-color: white;
 }
 
 .myPageText{

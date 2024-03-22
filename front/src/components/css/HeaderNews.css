@@ -147,7 +147,7 @@
 
 .detailsNewsDescription {
     background-color: white;
-    font-size: 100%;
+    font-size: 120%;
     position: relative;
     top: 10%;
     text-align: left;
@@ -329,11 +329,23 @@ a:hover {
 .commentDeleteButton {
     position: relative;
     left: 85%;
+    border: none;
+    background-color: #fff;
+    color: #666;
+}
+.commentDeleteButton:hover{
+  cursor: pointer;
 }
 
 .commentNotifyButton {
     position: relative;
-    left: 85%;
+    left: 85%;   
+    border: none;
+    background-color: #fff;
+    color: #666;
+}
+.commentNotifyButton:hover{
+  cursor: pointer;
 }
 
 .bookmarkBtn {

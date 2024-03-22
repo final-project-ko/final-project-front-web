@@ -55,7 +55,6 @@ const AdminDash = () => {
         const promise = await fetch(`https://www.oheveryday.shop/api/comments/userComments`)
           .then(response => response.json())
           .then(datas => {
-            console.log(datas);
             setComments(datas);
           })
       } catch (error) {

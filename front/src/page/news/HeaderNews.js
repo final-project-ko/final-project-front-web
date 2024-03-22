@@ -36,7 +36,6 @@ const HeaderNews = () => {
           .then(response => response.json())
           .then(data => {
             setArticles(data.articles);
-            console.log("data", data);
           })
       } catch (error) {
         console.log("Error fetching data", error);

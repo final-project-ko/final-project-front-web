@@ -33,10 +33,10 @@ const DetailsNews = ({ toggle }) => {
     /* 토글(국내,해외)에 따라 링크 문구 수정 */
     useEffect(() => {
         if (toggle) { // 국내
-            setLinkText("기사가 더 궁금하신가요?");
-            setLinkUrlText("기사 보러가기")
+            setLinkText("기사 원문이 궁금하신가요?");
+            setLinkUrlText("기사 원문 보러가기")
         } else { // 해외
-            setLinkText("If you're curious about the back story?");
+            setLinkText("If you're curious about the original article?");
             setLinkUrlText("Continue reading")
         }
     }, [toggle]);
@@ -244,7 +244,7 @@ const DetailsNews = ({ toggle }) => {
     }
 
     // article.description에서 '.'이 있는 부분을 모두 '\n'으로 치환하여 줄바꿈 처리
-    const formattedDescription = article.description.replace(/다\.(?!$)/g, '다.\n\n');
+    const formattedDescription = article.description.replace(/다\.\n(?!$)/g, '다.\n\n');
 
     /* 댓글 삭제 핸들러 */
     const commentDeleteHandler = (commentCode) => {

@@ -102,6 +102,7 @@ const Navbar = ({ toggle, setToggle }) => {
       window.localStorage.removeItem("NtodayId");
       setUserInfo("", "", "", "");
       setLogin(false);
+      navigate("/kr_total");
     }
 
   }

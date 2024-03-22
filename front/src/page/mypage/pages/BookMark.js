@@ -21,7 +21,6 @@ const BookMark = ({ userId }) => {
         const news = await promise.json();
         if (news && news.length > 0) {
           setArticles(news);
-          console.log(news);
         } else {
           console.log("북마크가 없습니다.");
         }
