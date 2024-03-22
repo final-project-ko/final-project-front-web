@@ -11,7 +11,7 @@ const BookMark = ({ userId }) => {
 
   /* 뉴스 클릭 시 해당 뉴스 상세페이지 이동 */
   const onClickHandler = (article) => {
-    navigate(`/detailNews/${article.newsCode}`, { state: { article, articles } }); // 선택한 뉴스, 전체 뉴스 정보를 상세페이지에 보내줌
+    navigate(`/detailNews/${article.code}`, { state: { article, articles } }); // 선택한 뉴스, 전체 뉴스 정보를 상세페이지에 보내줌
   }
 
   useEffect(() => {

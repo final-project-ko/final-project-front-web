@@ -91,7 +91,7 @@ const AdminMain = () => {
 
 
         <div className="adminDiv">
-          <div className="adminMainText" style={{ backgroundColor: "white", color: "black",cursor:"pointer" }} onClick={goMain}>www.today.co.kr</div>
+          <div className="adminMainText" style={{ backgroundColor: "white", color: "black",cursor:"pointer" }} onClick={goMain}>www.gurotimes.shop</div>
           <button className="adminLogOut" onClick={localHandler}><NavLink to={"/"} style={{ backgroundColor: "white", textDecoration: "none", color: "black" }}>로그아웃</NavLink></button>
 
         </div>
