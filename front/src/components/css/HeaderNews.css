@@ -17,6 +17,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    max-height: calc(40% * 10 + 9 * 30px);
+    overflow-y: auto;
 }
 
 .new1 {
